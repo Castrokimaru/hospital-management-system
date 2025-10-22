@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
+i
 
 
 function ToolBar () {
@@ -16,19 +18,19 @@ function ToolBar () {
 
         {/* Navigation Links */}
         <nav className="flex flex-col gap-5 ">
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Home</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">About Us</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Appointments</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Doctors & Specialties</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Doctor Availability</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Services</a>
-          <a href="#" className="text-white hover:text-blue-600 font-medium">Patient Records</a>
-          <a href="#" className="bg-yellow-200 rounded-3xl py-3 px-8 font-medium  inline-block  mr-4 hover:bg-transparent hover:border-black 
-           hover:text-white duration-300 hover:border border border-transparent">Billing & Insurance</a>
+          <Link to="/" className="text-white hover:text-blue-600 font-medium">Home</Link>
+          <Link to="/about" className="text-white hover:text-blue-600 font-medium">About Us</Link>
+          <Link to="/appointments"  className="text-white hover:text-blue-600 font-medium">Appointments</Link>
+          <Link to="/doctors"  className="text-white hover:text-blue-600 font-medium">Doctors & Specialties</Link>
+          <Link to="/availability"  className="text-white hover:text-blue-600 font-medium">Doctor Availability</Link>
+          <Link to="/services"  className="text-white hover:text-blue-600 font-medium">Services</Link>
+          <Link to="/records"  className="text-white hover:text-blue-600 font-medium">Patient Records</Link>
+          <Link to="/billing" className="bg-yellow-200 rounded-3xl py-3 px-8 font-medium  inline-block  mr-4 hover:bg-transparent hover:border-black 
+           hover:text-white duration-300 hover:border border border-transparent">Billing & Insurance</Link>
         </nav>
       </div>
       <button className="bg-blue-200 text-black px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-        <a href="/login"> Doctor's Plaza Login</a>
+        <Link to="/login"> Doctor's Plaza Login</Link>
       </button>
 
       {/* Footer */}
