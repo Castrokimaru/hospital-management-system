@@ -17,4 +17,15 @@ function Home() {
       .then((data) => setPatients(data))
       .catch((err) => console.error("Error fetching patients:", err));
 
-    
+    fetch("http://localhost:5001/doctors") // Fetch doctor data
+      .then((res) => res.json())
+      .then((data) => setDoctors(data))
+      .catch((err) => console.error("Error fetching doctors:", err));
+  }, []); // Empty array means it runs only once when the component mounts
+
+  console.log("Appointments:", appointments); // Show fetched appointments in console
+  console.log("Patients:", patients); // Show fetched patients in console
+  console.log("Doctors:", doctors); // Show fetched doctors in console
+
+  const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+  const todaysAppointments = appointments.filter((a) => a.date === today); // Filter only today's appointments
