@@ -35,7 +35,21 @@ const AppointmentsManagement = () => {
       apt.doctorId.toString().includes(searchTerm) ||
       apt.date.includes(searchTerm);
 
-    /
+    // Match the status filter (or show all if 'all' is selected)
+    const matchesStatus =
+      statusFilter === "all" || apt.status.toLowerCase() === statusFilter.toLowerCase();
+
+    // Return appointments that satisfy both filters
+    return matchesSearch && matchesStatus;
+  });
+
+  // Color codes for different appointment statuses
+  const statusColors = {
+    Confirmed: "bg-green-100 text-green-700",
+    Pending: "bg-yellow-100 text-yellow-800",
+    Cancelled: "bg-red-100 text-red-700",
+  };
+  
 };
 
 // Export the component for use in other files
