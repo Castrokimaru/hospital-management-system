@@ -11,3 +11,10 @@ function Home() {
       .then((res) => res.json()) // Convert response to JSON
       .then((data) => setAppointments(data)) // Save data to state
       .catch((err) => console.error("Error fetching appointments:", err)); // Log errors if any
+
+    fetch("http://localhost:5001/patients") // Fetch patient data
+      .then((res) => res.json())
+      .then((data) => setPatients(data))
+      .catch((err) => console.error("Error fetching patients:", err));
+
+    
