@@ -1,31 +1,29 @@
-import { useState } from 'react'
-import "./index.css"
-import ToolBar from './ToolBar'
-import { BrowserRouter as Router } from 'react-router-dom'
-import LayOut from './LayOut'
-
-// Main App component
+import React from "react";
+import "./index.css";
+import ToolBar from "./ToolBar";
 
 
-function App() {
 
 
+
+ function App () {
   return (
-    <>
-  
-    <div className="flex min-h-screen bg-gray-100">
+      <>
+      <div>
+        <ToolBar />
 
-      <ToolBar />
+        <div>
 
-      <div className="flex-1 p-8">
-        <LayOut />
+          
+        </div>
+
 
       </div>
-      </div>
-      
-    </>
-   
+      </>
   )
-}
+  }
 
-export default App
+
+export default App;
+
+
