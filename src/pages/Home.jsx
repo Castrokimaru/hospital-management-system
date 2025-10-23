@@ -56,7 +56,44 @@ function Home() {
             <p className="text-gray-500">Welcome to MediCare Management System</p> {/* Subtext */}
           </div>
 
-        
+          {/* Statistics Section */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Responsive grid layout */}
+            <div className="bg-blue-100 p-5 rounded-xl shadow"> {/* Appointments box */}
+              <h3 className="text-lg font-semibold text-blue-700 mb-1">Appointments Today</h3>
+              <p className="text-3xl font-bold text-gray-800">{todaysAppointments.length}</p> {/* Dynamic count */}
+              <p className="text-sm text-gray-500">+3 from yesterday</p>
+            </div>
+
+            <div className="bg-green-100 p-5 rounded-xl shadow"> {/* Patients box */}
+              <h3 className="text-lg font-semibold text-green-700 mb-1">Patients Checked In</h3>
+              <p className="text-3xl font-bold text-gray-800">18</p> {/* Example static value */}
+              <p className="text-sm text-gray-500">6 pending check-in</p>
+            </div>
+
+            <div className="bg-yellow-100 p-5 rounded-xl shadow"> {/* Doctors box */}
+              <h3 className="text-lg font-semibold text-yellow-700 mb-1">Doctors On Duty</h3>
+              <p className="text-3xl font-bold text-gray-800">{doctors.length}</p> {/* Dynamic count */}
+              <p className="text-sm text-gray-500">3 on emergency call</p>
+            </div>
+          </div>
+
+          {/* Notifications */}
+          <div className="bg-gray-100 p-5 rounded-xl shadow space-y-2"> {/* Notification box */}
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">Notifications</h3>
+            <p className="text-gray-600">3 appointments pending confirmation for tomorrow</p>
+            <p className="text-gray-600">Dr. Brian Karanja will be on leave next week</p>
+          </div>
+
+          {/* Quick Actions */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+            <div className="grid sm:grid-cols-3 gap-4"> {/* Grid for buttons */}
+              <button className="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition">Schedule New Appointment</button>
+              <button className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 transition">Check-In Patient</button>
+              <button className="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700 transition">Search Patient Record</button>
+            </div>
+          </div>
+
   );
 }
 
