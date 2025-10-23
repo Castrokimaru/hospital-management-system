@@ -73,3 +73,37 @@ const PatientRecords = () => {
           <span>Last Visit</span>
           <span>Action</span>
         </div>
+
+        {filteredPatients.length > 0 ? (
+          filteredPatients.map((patient) => (
+            <div
+              key={patient.id}
+              className="grid grid-cols-5 items-center py-3 border-b last:border-none hover:bg-gray-50 transition"
+            >
+              {/* Patient Info */}
+              <div>
+                <p className="font-semibold text-gray-800">{patient.name}</p>
+                <p className="text-sm text-gray-500">
+                  {patient.gender} • Age: {patient.age} • {patient.diagnosis}
+                </p>
+              </div>
+
+              <p className="text-gray-600">{patient.insurance}</p>
+              <p className="text-gray-600">{patient.phone}</p>
+              <p className="text-gray-600">{patient.lastVisit}</p>
+
+              {/* Action Button */}
+              <button className="text-blue-600 font-medium hover:text-blue-800 hover:underline">
+                View Details
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 py-4">No patients found.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default PatientRecords;
