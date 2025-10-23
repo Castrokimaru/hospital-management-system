@@ -79,7 +79,34 @@ const AppointmentsManagement = () => {
         </select>
       </div>
 
-      
+      {/* Table Section */}
+      <div className="overflow-x-auto shadow-lg rounded-lg bg-white">
+        <table className="min-w-full border-collapse">
+          {/* Table Header */}
+          <thead className="bg-blue-600 text-white">
+            <tr>
+              <th className="px-4 py-3 text-left">ID</th>
+              <th className="px-4 py-3 text-left">Patient ID</th>
+              <th className="px-4 py-3 text-left">Doctor ID</th>
+              <th className="px-4 py-3 text-left">Date</th>
+              <th className="px-4 py-3 text-left">Time</th>
+              <th className="px-4 py-3 text-left">Status</th>
+              <th className="px-4 py-3 text-left">Actions</th>
+            </tr>
+          </thead>
+
+          {/* Table Body */}
+          <tbody>
+            {/* Display filtered appointments */}
+            {filteredAppointments.map((apt) => (
+              <tr key={apt.id} className="border-b hover:bg-gray-50 transition">
+                <td className="px-4 py-3 font-medium text-gray-700">{apt.id}</td>
+                <td className="px-4 py-3">{apt.patientId}</td>
+                <td className="px-4 py-3">{apt.doctorId}</td>
+                <td className="px-4 py-3">{apt.date}</td>
+                <td className="px-4 py-3">{apt.time}</td>
+
+               
 };
 
 // Export the component for use in other files
