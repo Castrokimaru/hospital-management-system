@@ -94,6 +94,55 @@ function Home() {
             </div>
           </div>
 
+          {/* Today's Schedule Section */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Schedule</h3>
+            <p className="text-gray-500 mb-4">Upcoming appointments for {new Date().toLocaleDateString()}</p>
+
+            <div className="space-y-4">
+              {todaysAppointments.length === 0 ? ( // Check if there are no appointments
+                <p className="text-gray-500">No appointments scheduled for today.</p>
+              ) : (
+                todaysAppointments.map((app) => { // Loop through today's appointments
+                  const patient = patients.find((p) => p.id === app.patientId); // Match patient by ID
+                  const doctor = doctors.find((d) => d.id === app.doctorId); // Match doctor by ID
+
+                  return (
+                    <div
+                      key={app.id}
+                      className="border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition-shadow"
+                    > {/* Individual appointment card */}
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-sm text-gray-500">{app.time}</p> {/* Appointment time */}
+                          <h4 className="font-semibold text-blue-700">{patient ? patient.name : "Unknown Patient"}</h4> {/* Patient name */}
+                          <p className="text-sm text-gray-600">
+                            {doctor ? `${doctor.name} • ${doctor.specialty}` : "Unknown Doctor"} {/* Doctor info */}
+                          </p>
+                        </div>
+
+                        {/* Status badge with dynamic colors */}
+                        <span
+                          className={`px-3 py-1 text-sm font-medium rounded-full ${
+                            app.status === "Confirmed"
+                              ? "bg-green-100 text-green-700"
+                              : app.status === "Pending"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
+                          {app.status.toLowerCase()} {/* Display appointment status */}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
