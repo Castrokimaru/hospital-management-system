@@ -11,8 +11,13 @@ import Layout from './LayOut.jsx'
 
 import Appointments from './pages/Appointments.jsx'
 import DoctorAv from './pages/DoctorAv.jsx'
+
 import DoctorsSpeciality from './pages/DoctorsSpeciality.jsx'
 import ServicesCatalog from './pages/Services.jsx'
+
+import PatientRecords from './pages/Records.jsx'
+
+
 
 const router = createBrowserRouter ([ 
    {
@@ -33,6 +38,13 @@ const router = createBrowserRouter ([
   element:<DoctorsSpeciality />},
   {path:"/availability",
   element:<DoctorAv />},
+<<<<<<< Updated upstream
+=======
+  {path:"/records",
+  element:<PatientRecords />},
+  {path:"/billing",
+  element:<ToolBar />},
+>>>>>>> Stashed changes
   ]
   }
   

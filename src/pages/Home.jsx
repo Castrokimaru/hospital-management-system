@@ -1,144 +1,164 @@
-import React, { useEffect, useState } from "react"; // Import React and two hooks for data handling
-import { Link } from "react-router-dom"; // Import Link for navigation without page reload
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Home() {
-  const [appointments, setAppointments] = useState([]); // Store appointment data
-  const [patients, setPatients] = useState([]); // Store patient data
-  const [doctors, setDoctors] = useState([]); // Store doctor data
+  const [appointments, setAppointments] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => { // Runs when the page first loads
-    fetch("http://localhost:5001/appointments") // Fetch appointment data
-      .then((res) => res.json()) // Convert response to JSON
-      .then((data) => setAppointments(data)) // Save data to state
-      .catch((err) => console.error("Error fetching appointments:", err)); // Log errors if any
+  // Fetch data from db.json
+  useEffect(() => {
+    const endpoints = ["appointments", "patients", "doctors"];
+    endpoints.forEach((endpoint) =>
+      fetch(`http://localhost:5001/${endpoint}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (endpoint === "appointments") setAppointments(data);
+          if (endpoint === "patients") setPatients(data);
+          if (endpoint === "doctors") setDoctors(data);
+        })
+        .catch((err) => console.error(`Error fetching ${endpoint}:`, err))
+    );
+  }, []);
 
-    fetch("http://localhost:5001/patients") // Fetch patient data
-      .then((res) => res.json())
-      .then((data) => setPatients(data))
-      .catch((err) => console.error("Error fetching patients:", err));
+  const today = new Date().toISOString().split("T")[0];
+  const todaysAppointments = appointments.filter((a) => a.date === today);
 
-    fetch("http://localhost:5001/doctors") // Fetch doctor data
-      .then((res) => res.json())
-      .then((data) => setDoctors(data))
-      .catch((err) => console.error("Error fetching doctors:", err));
-  }, []); // Empty array means it runs only once when the component mounts
+  // Add new appointment
+  const handleAddAppointment = async () => {
+    if (!patients.length || !doctors.length)
+      return alert("Add patients and doctors first.");
 
-  console.log("Appointments:", appointments); // Show fetched appointments in console
-  console.log("Patients:", patients); // Show fetched patients in console
-  console.log("Doctors:", doctors); // Show fetched doctors in console
-
-  const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
-  const todaysAppointments = appointments.filter((a) => a.date === today); // Filter only today's appointments
+    setLoading(true);
+    try {
+      const newAppointment = {
+        patientId: patients[Math.floor(Math.random() * patients.length)].id,
+        doctorId: doctors[Math.floor(Math.random() * doctors.length)].id,
+        date: today,
+        time: "10:00 AM",
+        status: "Pending",
+      };
+      const res = await fetch("http://localhost:5001/appointments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newAppointment),
+      });
+      const saved = await res.json();
+      setAppointments([...appointments, saved]);
+      alert("Appointment added successfully!");
+    } catch {
+      alert("Error adding appointment.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="bg-blue-50 min-h-screen flex flex-col"> {/* Light blue background and vertical layout */}
-      
-      {/* Navbar Section */}
-      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow-md rounded-b-2xl"> {/* Top bar with rounded bottom edges */}
-        <h1 className="text-2xl font-bold">MediCare Management System</h1> {/* App title */}
-        
-        <div className="flex space-x-6 text-sm font-medium"> {/* Links spaced evenly */}
-          <Link to="/" className="hover:underline">Home</Link> {/* Home link */}
-          <Link to="/about" className="hover:underline">About Us</Link> {/* About link */}
-          <Link to="/patients" className="hover:underline">Patients</Link> {/* Patients link */}
-          <Link to="/appointments" className="hover:underline">Appointments</Link> {/* Appointments link */}
-          <Link to="/doctors" className="hover:underline">Doctors</Link> {/* Doctors link */}
+    <div className="bg-blue-50 min-h-screen flex flex-col">
+      {/* Navbar */}
+      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow-md rounded-b-2xl">
+        <h1 className="text-2xl font-bold">MediCare Management System</h1>
+        <div className="flex space-x-6 text-sm font-medium">
+          {["/", "/about", "/patients", "/appointments", "/doctors"].map(
+            (path, i) => (
+              <Link key={i} to={path} className="hover:underline">
+                {["Home", "About Us", "Patients", "Appointments", "Doctors"][i]}
+              </Link>
+            )
+          )}
         </div>
       </nav>
 
-      {/* Main Dashboard Area */}
-      <div className="flex-grow: flex flex-col items-center py-10 px-4"> {/* Centers dashboard in remaining space */}
-        <div className="bg-white shadow-2xl rounded-2xl w-full max-w-5xl p-8 space-y-8"> {/* Main white container with rounded corners */}
-          
-          {/* Header */}
+      {/* Dashboard */}
+      <div className="flex-grow: flex flex-col items-center py-10 px-4">
+        <div className="bg-white shadow-2xl rounded-2xl w-full max-w-5xl p-8 space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-blue-700 mb-2">Dashboard</h2> {/* Dashboard title */}
-            <p className="text-gray-500">Welcome to MediCare Management System</p> {/* Subtext */}
+            <h2 className="text-3xl font-bold text-blue-700 mb-2">Dashboard</h2>
+            <p className="text-gray-500">Welcome to MediCare Management System</p>
           </div>
 
-          {/* Statistics Section */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Responsive grid layout */}
-            <div className="bg-blue-100 p-5 rounded-xl shadow"> {/* Appointments box */}
-              <h3 className="text-lg font-semibold text-blue-700 mb-1">Appointments Today</h3>
-              <p className="text-3xl font-bold text-gray-800">{todaysAppointments.length}</p> {/* Dynamic count */}
-              <p className="text-sm text-gray-500">+3 from yesterday</p>
-            </div>
-
-            <div className="bg-green-100 p-5 rounded-xl shadow"> {/* Patients box */}
-              <h3 className="text-lg font-semibold text-green-700 mb-1">Patients Checked In</h3>
-              <p className="text-3xl font-bold text-gray-800">18</p> {/* Example static value */}
-              <p className="text-sm text-gray-500">6 pending check-in</p>
-            </div>
-
-            <div className="bg-yellow-100 p-5 rounded-xl shadow"> {/* Doctors box */}
-              <h3 className="text-lg font-semibold text-yellow-700 mb-1">Doctors On Duty</h3>
-              <p className="text-3xl font-bold text-gray-800">{doctors.length}</p> {/* Dynamic count */}
-              <p className="text-sm text-gray-500">3 on emergency call</p>
-            </div>
-          </div>
-
-          {/* Notifications */}
-          <div className="bg-gray-100 p-5 rounded-xl shadow space-y-2"> {/* Notification box */}
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Notifications</h3>
-            <p className="text-gray-600">3 appointments pending confirmation for tomorrow</p>
-            <p className="text-gray-600">Dr. Brian Karanja will be on leave next week</p>
+          {/* Stats */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              ["Appointments Today", todaysAppointments.length, "blue"],
+              ["Patients Checked In", 18, "green"],
+              ["Doctors On Duty", doctors.length, "yellow"],
+            ].map(([title, value, color], i) => (
+              <div key={i} className={`bg-${color}-100 p-5 rounded-xl shadow`}>
+                <h3 className={`text-lg font-semibold text-${color}-700 mb-1`}>
+                  {title}
+                </h3>
+                <p className="text-3xl font-bold text-gray-800">{value}</p>
+              </div>
+            ))}
           </div>
 
           {/* Quick Actions */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
-            <div className="grid sm:grid-cols-3 gap-4"> {/* Grid for buttons */}
-              <button className="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition">Schedule New Appointment</button>
-              <button className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 transition">Check-In Patient</button>
-              <button className="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700 transition">Search Patient Record</button>
+            <div className="grid sm:grid-cols-3 gap-4">
+              <button
+                onClick={handleAddAppointment}
+                disabled={loading}
+                className={`p-3 rounded-xl text-white ${
+                  loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+                }`}
+              >
+                {loading ? "Scheduling..." : "Schedule New Appointment"}
+              </button>
+              <button className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700">
+                Check-In Patient
+              </button>
+              <button className="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700">
+                Search Patient Record
+              </button>
             </div>
           </div>
 
-          {/* Today's Schedule Section */}
+          {/* Today's Schedule */}
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Schedule</h3>
-            <p className="text-gray-500 mb-4">Upcoming appointments for {new Date().toLocaleDateString()}</p>
-
-            <div className="space-y-4">
-              {todaysAppointments.length === 0 ? ( // Check if there are no appointments
-                <p className="text-gray-500">No appointments scheduled for today.</p>
-              ) : (
-                todaysAppointments.map((app) => { // Loop through today's appointments
-                  const patient = patients.find((p) => p.id === app.patientId); // Match patient by ID
-                  const doctor = doctors.find((d) => d.id === app.doctorId); // Match doctor by ID
-
-                  return (
-                    <div
-                      key={app.id}
-                      className="border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition-shadow"
-                    > {/* Individual appointment card */}
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <p className="text-sm text-gray-500">{app.time}</p> {/* Appointment time */}
-                          <h4 className="font-semibold text-blue-700">{patient ? patient.name : "Unknown Patient"}</h4> {/* Patient name */}
-                          <p className="text-sm text-gray-600">
-                            {doctor ? `${doctor.name} • ${doctor.specialty}` : "Unknown Doctor"} {/* Doctor info */}
-                          </p>
-                        </div>
-
-                        {/* Status badge with dynamic colors */}
-                        <span
-                          className={`px-3 py-1 text-sm font-medium rounded-full ${
-                            app.status === "Confirmed"
-                              ? "bg-green-100 text-green-700"
-                              : app.status === "Pending"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-red-100 text-red-700"
-                          }`}
-                        >
-                          {app.status.toLowerCase()} {/* Display appointment status */}
-                        </span>
+            <p className="text-gray-500 mb-4">
+              Upcoming appointments for {new Date().toLocaleDateString()}
+            </p>
+            {todaysAppointments.length ? (
+              todaysAppointments.map((a) => {
+                const patient = patients.find((p) => p.id === a.patientId);
+                const doctor = doctors.find((d) => d.id === a.doctorId);
+                return (
+                  <div
+                    key={a.id}
+                    className="border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md"
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <p className="text-sm text-gray-500">{a.time}</p>
+                        <h4 className="font-semibold text-blue-700">
+                          {patient?.name || "Unknown Patient"}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {doctor ? `${doctor.name} • ${doctor.specialty}` : "Unknown Doctor"}
+                        </p>
                       </div>
+                      <span
+                        className={`px-3 py-1 text-sm rounded-full ${
+                          a.status === "Confirmed"
+                            ? "bg-green-100 text-green-700"
+                            : a.status === "Pending"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-red-100 text-red-700"
+                        }`}
+                      >
+                        {a.status.toLowerCase()}
+                      </span>
                     </div>
-                  );
-                })
-              )}
-            </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-gray-500">No appointments scheduled for today.</p>
+            )}
           </div>
         </div>
       </div>
@@ -146,4 +166,4 @@ function Home() {
   );
 }
 
-export default Home; // Export component so it can be used in App.jsx
+export default Home;
