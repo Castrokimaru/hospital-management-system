@@ -98,7 +98,7 @@ export default function Home() {
         {/* Quick action buttons */}
         <div className="grid sm:grid-cols-3 gap-4">
           <Button onClick={addAppointment} color="blue">{loading?"Scheduling...":"New Appointment"}</Button>
-          <Button onClick={cancelAppointments} color="red">Cancel Appointments</Button>
+          <Button onClick={cancelAppointments} color="blue">Cancel Appointments</Button>
           <Button color="indigo">Search Patient</Button>
         </div>
 

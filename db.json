@@ -375,38 +375,6 @@
       "date": "2025-11-02",
       "time": "1:00 PM",
       "status": "Confirmed"
-    },
-    {
-      "id": "5d22",
-      "patientId": "17",
-      "doctorId": "5",
-      "date": "2025-10-23",
-      "time": "10:00 AM",
-      "status": "Pending"
-    },
-    {
-      "id": "8726",
-      "patientId": "4",
-      "doctorId": "2",
-      "date": "2025-10-23",
-      "time": "10:00 AM",
-      "status": "Pending"
-    },
-    {
-      "id": "1a22",
-      "patientId": "13",
-      "doctorId": "9",
-      "date": "2025-10-23",
-      "time": "10:00 AM",
-      "status": "Pending"
-    },
-    {
-      "id": "0659",
-      "patientId": "14",
-      "doctorId": "1",
-      "date": "2025-10-23",
-      "time": "10:00 AM",
-      "status": "Pending"
     }
   ],
   "services": [
