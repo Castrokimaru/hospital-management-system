@@ -1,72 +1,498 @@
 {
   "patients": [
-    { "id": 1, "name": "Brian Otieno", "age": 32, "gender": "Male", "phone": "0721345678", "email": "b.otieno@example.com", "diagnosis": "Malaria", "doctorId": 2 },
-    { "id": 2, "name": "Faith Wanjiku", "age": 26, "gender": "Female", "phone": "0702456789", "email": "f.wanjiku@example.com", "diagnosis": "Allergy", "doctorId": 1 },
-    { "id": 3, "name": "George Mwangi", "age": 41, "gender": "Male", "phone": "0710456723", "email": "g.mwangi@example.com", "diagnosis": "Hypertension", "doctorId": 4 },
-    { "id": 4, "name": "Cynthia Achieng", "age": 29, "gender": "Female", "phone": "0745123456", "email": "c.achieng@example.com", "diagnosis": "Asthma", "doctorId": 3 },
-    { "id": 5, "name": "Daniel Kiptoo", "age": 35, "gender": "Male", "phone": "0798123445", "email": "d.kiptoo@example.com", "diagnosis": "Fracture", "doctorId": 6 },
-    { "id": 6, "name": "Mercy Naliaka", "age": 22, "gender": "Female", "phone": "0711345629", "email": "m.naliaka@example.com", "diagnosis": "Migraine", "doctorId": 5 },
-    { "id": 7, "name": "Samuel Mutua", "age": 48, "gender": "Male", "phone": "0702123444", "email": "s.mutua@example.com", "diagnosis": "Diabetes", "doctorId": 4 },
-    { "id": 8, "name": "Lucy Wairimu", "age": 30, "gender": "Female", "phone": "0726123490", "email": "l.wairimu@example.com", "diagnosis": "Pregnancy Check-up", "doctorId": 8 },
-    { "id": 9, "name": "Joseph Odhiambo", "age": 37, "gender": "Male", "phone": "0733123499", "email": "j.odhiambo@example.com", "diagnosis": "Ulcer", "doctorId": 2 },
-    { "id": 10, "name": "Agnes Wekesa", "age": 54, "gender": "Female", "phone": "0799456722", "email": "a.wekesa@example.com", "diagnosis": "Arthritis", "doctorId": 7 },
-    { "id": 11, "name": "Peter Mworia", "age": 45, "gender": "Male", "phone": "0727890123", "email": "p.mworia@example.com", "diagnosis": "Back Pain", "doctorId": 6 },
-    { "id": 12, "name": "Stella Nyambura", "age": 28, "gender": "Female", "phone": "0740567890", "email": "s.nyambura@example.com", "diagnosis": "Eye Infection", "doctorId": 5 },
-    { "id": 13, "name": "Vincent Kariuki", "age": 33, "gender": "Male", "phone": "0713456789", "email": "v.kariuki@example.com", "diagnosis": "Typhoid", "doctorId": 2 },
-    { "id": 14, "name": "Alice Chebet", "age": 31, "gender": "Female", "phone": "0798567123", "email": "a.chebet@example.com", "diagnosis": "Sinusitis", "doctorId": 1 },
-    { "id": 15, "name": "Kevin Ochieng", "age": 24, "gender": "Male", "phone": "0724678912", "email": "k.ochieng@example.com", "diagnosis": "Flu", "doctorId": 3 },
-    { "id": 16, "name": "Naomi Muthoni", "age": 38, "gender": "Female", "phone": "0734456789", "email": "n.muthoni@example.com", "diagnosis": "Migraine", "doctorId": 5 },
-    { "id": 17, "name": "Benard Njoroge", "age": 49, "gender": "Male", "phone": "0718345672", "email": "b.njoroge@example.com", "diagnosis": "High Cholesterol", "doctorId": 4 },
-    { "id": 18, "name": "Mary Akinyi", "age": 36, "gender": "Female", "phone": "0792345678", "email": "m.akinyi@example.com", "diagnosis": "Stomach Ache", "doctorId": 2 },
-    { "id": 19, "name": "Felix Kimutai", "age": 27, "gender": "Male", "phone": "0709456781", "email": "f.kimutai@example.com", "diagnosis": "Sports Injury", "doctorId": 6 },
-    { "id": 20, "name": "Linda Njeri", "age": 40, "gender": "Female", "phone": "0745345678", "email": "l.njeri@example.com", "diagnosis": "Hypertension", "doctorId": 4 }
+    {
+      "id": "1",
+      "name": "Brian Otieno",
+      "age": 32,
+      "gender": "Male",
+      "phone": "0721345678",
+      "email": "b.otieno@example.com",
+      "diagnosis": "Malaria",
+      "doctorId": 2
+    },
+    {
+      "id": "2",
+      "name": "Faith Wanjiku",
+      "age": 26,
+      "gender": "Female",
+      "phone": "0702456789",
+      "email": "f.wanjiku@example.com",
+      "diagnosis": "Allergy",
+      "doctorId": 1
+    },
+    {
+      "id": "3",
+      "name": "George Mwangi",
+      "age": 41,
+      "gender": "Male",
+      "phone": "0710456723",
+      "email": "g.mwangi@example.com",
+      "diagnosis": "Hypertension",
+      "doctorId": 4
+    },
+    {
+      "id": "4",
+      "name": "Cynthia Achieng",
+      "age": 29,
+      "gender": "Female",
+      "phone": "0745123456",
+      "email": "c.achieng@example.com",
+      "diagnosis": "Asthma",
+      "doctorId": 3
+    },
+    {
+      "id": "5",
+      "name": "Daniel Kiptoo",
+      "age": 35,
+      "gender": "Male",
+      "phone": "0798123445",
+      "email": "d.kiptoo@example.com",
+      "diagnosis": "Fracture",
+      "doctorId": 6
+    },
+    {
+      "id": "6",
+      "name": "Mercy Naliaka",
+      "age": 22,
+      "gender": "Female",
+      "phone": "0711345629",
+      "email": "m.naliaka@example.com",
+      "diagnosis": "Migraine",
+      "doctorId": 5
+    },
+    {
+      "id": "7",
+      "name": "Samuel Mutua",
+      "age": 48,
+      "gender": "Male",
+      "phone": "0702123444",
+      "email": "s.mutua@example.com",
+      "diagnosis": "Diabetes",
+      "doctorId": 4
+    },
+    {
+      "id": "8",
+      "name": "Lucy Wairimu",
+      "age": 30,
+      "gender": "Female",
+      "phone": "0726123490",
+      "email": "l.wairimu@example.com",
+      "diagnosis": "Pregnancy Check-up",
+      "doctorId": 8
+    },
+    {
+      "id": "9",
+      "name": "Joseph Odhiambo",
+      "age": 37,
+      "gender": "Male",
+      "phone": "0733123499",
+      "email": "j.odhiambo@example.com",
+      "diagnosis": "Ulcer",
+      "doctorId": 2
+    },
+    {
+      "id": "10",
+      "name": "Agnes Wekesa",
+      "age": 54,
+      "gender": "Female",
+      "phone": "0799456722",
+      "email": "a.wekesa@example.com",
+      "diagnosis": "Arthritis",
+      "doctorId": 7
+    },
+    {
+      "id": "11",
+      "name": "Peter Mworia",
+      "age": 45,
+      "gender": "Male",
+      "phone": "0727890123",
+      "email": "p.mworia@example.com",
+      "diagnosis": "Back Pain",
+      "doctorId": 6
+    },
+    {
+      "id": "12",
+      "name": "Stella Nyambura",
+      "age": 28,
+      "gender": "Female",
+      "phone": "0740567890",
+      "email": "s.nyambura@example.com",
+      "diagnosis": "Eye Infection",
+      "doctorId": 5
+    },
+    {
+      "id": "13",
+      "name": "Vincent Kariuki",
+      "age": 33,
+      "gender": "Male",
+      "phone": "0713456789",
+      "email": "v.kariuki@example.com",
+      "diagnosis": "Typhoid",
+      "doctorId": 2
+    },
+    {
+      "id": "14",
+      "name": "Alice Chebet",
+      "age": 31,
+      "gender": "Female",
+      "phone": "0798567123",
+      "email": "a.chebet@example.com",
+      "diagnosis": "Sinusitis",
+      "doctorId": 1
+    },
+    {
+      "id": "15",
+      "name": "Kevin Ochieng",
+      "age": 24,
+      "gender": "Male",
+      "phone": "0724678912",
+      "email": "k.ochieng@example.com",
+      "diagnosis": "Flu",
+      "doctorId": 3
+    },
+    {
+      "id": "16",
+      "name": "Naomi Muthoni",
+      "age": 38,
+      "gender": "Female",
+      "phone": "0734456789",
+      "email": "n.muthoni@example.com",
+      "diagnosis": "Migraine",
+      "doctorId": 5
+    },
+    {
+      "id": "17",
+      "name": "Benard Njoroge",
+      "age": 49,
+      "gender": "Male",
+      "phone": "0718345672",
+      "email": "b.njoroge@example.com",
+      "diagnosis": "High Cholesterol",
+      "doctorId": 4
+    },
+    {
+      "id": "18",
+      "name": "Mary Akinyi",
+      "age": 36,
+      "gender": "Female",
+      "phone": "0792345678",
+      "email": "m.akinyi@example.com",
+      "diagnosis": "Stomach Ache",
+      "doctorId": 2
+    },
+    {
+      "id": "19",
+      "name": "Felix Kimutai",
+      "age": 27,
+      "gender": "Male",
+      "phone": "0709456781",
+      "email": "f.kimutai@example.com",
+      "diagnosis": "Sports Injury",
+      "doctorId": 6
+    },
+    {
+      "id": "20",
+      "name": "Linda Njeri",
+      "age": 40,
+      "gender": "Female",
+      "phone": "0745345678",
+      "email": "l.njeri@example.com",
+      "diagnosis": "Hypertension",
+      "doctorId": 4
+    }
   ],
   "doctors": [
-    { "id": 1, "name": "Dr. Alice Wambui", "specialty": "Dermatologist", "availability": "Mon-Fri 9am-3pm" },
-    { "id": 2, "name": "Dr. Brian Karanja", "specialty": "General Practitioner", "availability": "Tue-Sat 10am-6pm" },
-    { "id": 3, "name": "Dr. Cynthia Ouma", "specialty": "Pediatrician", "availability": "Mon-Fri 8am-4pm" },
-    { "id": 4, "name": "Dr. George Maina", "specialty": "Cardiologist", "availability": "Mon, Wed, Fri 9am-2pm" },
-    { "id": 5, "name": "Dr. Mercy Cherono", "specialty": "Neurologist", "availability": "Tue-Fri 10am-5pm" },
-    { "id": 6, "name": "Dr. David Kipruto", "specialty": "Orthopedic Surgeon", "availability": "Mon-Sat 9am-5pm" },
-    { "id": 7, "name": "Dr. Agnes Mutheu", "specialty": "Physiotherapist", "availability": "Mon-Fri 8am-4pm" },
-    { "id": 8, "name": "Dr. Lucy Achieng", "specialty": "Gynecologist", "availability": "Mon-Sat 9am-4pm" },
-    { "id": 9, "name": "Dr. Peter Omondi", "specialty": "Dentist", "availability": "Tue-Sat 10am-6pm" },
-    { "id": 10, "name": "Dr. Irene Mwikali", "specialty": "Psychiatrist", "availability": "Mon-Fri 8am-3pm" }
+    {
+      "id": "1",
+      "name": "Dr. Alice Wambui",
+      "specialty": "Dermatologist",
+      "availability": "Mon-Fri 9am-3pm"
+    },
+    {
+      "id": "2",
+      "name": "Dr. Brian Karanja",
+      "specialty": "General Practitioner",
+      "availability": "Tue-Sat 10am-6pm"
+    },
+    {
+      "id": "3",
+      "name": "Dr. Cynthia Ouma",
+      "specialty": "Pediatrician",
+      "availability": "Mon-Fri 8am-4pm"
+    },
+    {
+      "id": "4",
+      "name": "Dr. George Maina",
+      "specialty": "Cardiologist",
+      "availability": "Mon, Wed, Fri 9am-2pm"
+    },
+    {
+      "id": "5",
+      "name": "Dr. Mercy Cherono",
+      "specialty": "Neurologist",
+      "availability": "Tue-Fri 10am-5pm"
+    },
+    {
+      "id": "6",
+      "name": "Dr. David Kipruto",
+      "specialty": "Orthopedic Surgeon",
+      "availability": "Mon-Sat 9am-5pm"
+    },
+    {
+      "id": "7",
+      "name": "Dr. Agnes Mutheu",
+      "specialty": "Physiotherapist",
+      "availability": "Mon-Fri 8am-4pm"
+    },
+    {
+      "id": "8",
+      "name": "Dr. Lucy Achieng",
+      "specialty": "Gynecologist",
+      "availability": "Mon-Sat 9am-4pm"
+    },
+    {
+      "id": "9",
+      "name": "Dr. Peter Omondi",
+      "specialty": "Dentist",
+      "availability": "Tue-Sat 10am-6pm"
+    },
+    {
+      "id": "10",
+      "name": "Dr. Irene Mwikali",
+      "specialty": "Psychiatrist",
+      "availability": "Mon-Fri 8am-3pm"
+    }
   ],
   "appointments": [
-    { "id": 1, "patientId": 1, "doctorId": 2, "date": "2025-10-22", "time": "10:30 AM", "status": "Confirmed" },
-    { "id": 2, "patientId": 3, "doctorId": 4, "date": "2025-10-23", "time": "11:00 AM", "status": "Pending" },
-    { "id": 3, "patientId": 5, "doctorId": 6, "date": "2025-10-24", "time": "9:00 AM", "status": "Confirmed" },
-    { "id": 4, "patientId": 8, "doctorId": 8, "date": "2025-10-25", "time": "2:30 PM", "status": "Pending" },
-    { "id": 5, "patientId": 10, "doctorId": 7, "date": "2025-10-25", "time": "3:00 PM", "status": "Confirmed" },
-    { "id": 6, "patientId": 2, "doctorId": 1, "date": "2025-10-26", "time": "1:30 PM", "status": "Pending" },
-    { "id": 7, "patientId": 4, "doctorId": 3, "date": "2025-10-27", "time": "10:00 AM", "status": "Confirmed" },
-    { "id": 8, "patientId": 6, "doctorId": 5, "date": "2025-10-27", "time": "11:30 AM", "status": "Cancelled" },
-    { "id": 9, "patientId": 12, "doctorId": 5, "date": "2025-10-28", "time": "3:00 PM", "status": "Confirmed" },
-    { "id": 10, "patientId": 13, "doctorId": 2, "date": "2025-10-28", "time": "12:30 PM", "status": "Confirmed" },
-    { "id": 11, "patientId": 15, "doctorId": 3, "date": "2025-10-29", "time": "9:00 AM", "status": "Pending" },
-    { "id": 12, "patientId": 16, "doctorId": 5, "date": "2025-10-30", "time": "2:00 PM", "status": "Confirmed" },
-    { "id": 13, "patientId": 18, "doctorId": 2, "date": "2025-10-30", "time": "11:00 AM", "status": "Pending" },
-    { "id": 14, "patientId": 19, "doctorId": 6, "date": "2025-11-01", "time": "4:00 PM", "status": "Confirmed" },
-    { "id": 15, "patientId": 20, "doctorId": 4, "date": "2025-11-02", "time": "1:00 PM", "status": "Confirmed" }
+    {
+      "id": "1",
+      "patientId": 1,
+      "doctorId": 2,
+      "date": "2025-10-22",
+      "time": "10:30 AM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "3",
+      "patientId": 5,
+      "doctorId": 6,
+      "date": "2025-10-24",
+      "time": "9:00 AM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "4",
+      "patientId": 8,
+      "doctorId": 8,
+      "date": "2025-10-25",
+      "time": "2:30 PM",
+      "status": "Pending"
+    },
+    {
+      "id": "5",
+      "patientId": 10,
+      "doctorId": 7,
+      "date": "2025-10-25",
+      "time": "3:00 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "6",
+      "patientId": 2,
+      "doctorId": 1,
+      "date": "2025-10-26",
+      "time": "1:30 PM",
+      "status": "Pending"
+    },
+    {
+      "id": "7",
+      "patientId": 4,
+      "doctorId": 3,
+      "date": "2025-10-27",
+      "time": "10:00 AM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "8",
+      "patientId": 6,
+      "doctorId": 5,
+      "date": "2025-10-27",
+      "time": "11:30 AM",
+      "status": "Cancelled"
+    },
+    {
+      "id": "9",
+      "patientId": 12,
+      "doctorId": 5,
+      "date": "2025-10-28",
+      "time": "3:00 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "10",
+      "patientId": 13,
+      "doctorId": 2,
+      "date": "2025-10-28",
+      "time": "12:30 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "11",
+      "patientId": 15,
+      "doctorId": 3,
+      "date": "2025-10-29",
+      "time": "9:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "12",
+      "patientId": 16,
+      "doctorId": 5,
+      "date": "2025-10-30",
+      "time": "2:00 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "13",
+      "patientId": 18,
+      "doctorId": 2,
+      "date": "2025-10-30",
+      "time": "11:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "14",
+      "patientId": 19,
+      "doctorId": 6,
+      "date": "2025-11-01",
+      "time": "4:00 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "15",
+      "patientId": 20,
+      "doctorId": 4,
+      "date": "2025-11-02",
+      "time": "1:00 PM",
+      "status": "Confirmed"
+    },
+    {
+      "id": "5d22",
+      "patientId": "17",
+      "doctorId": "5",
+      "date": "2025-10-23",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "8726",
+      "patientId": "4",
+      "doctorId": "2",
+      "date": "2025-10-23",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "1a22",
+      "patientId": "13",
+      "doctorId": "9",
+      "date": "2025-10-23",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "0659",
+      "patientId": "14",
+      "doctorId": "1",
+      "date": "2025-10-23",
+      "time": "10:00 AM",
+      "status": "Pending"
+    }
   ],
   "services": [
-    { "id": 1, "name": "General Consultation", "price": 1500 },
-    { "id": 2, "name": "Laboratory Tests", "price": 2500 },
-    { "id": 3, "name": "Dental Cleaning", "price": 3000 },
-    { "id": 4, "name": "X-Ray", "price": 3500 },
-    { "id": 5, "name": "MRI Scan", "price": 8000 },
-    { "id": 6, "name": "Physiotherapy Session", "price": 2000 },
-    { "id": 7, "name": "Antenatal Check-up", "price": 1800 },
-    { "id": 8, "name": "Skin Treatment", "price": 2700 }
+    {
+      "id": "1",
+      "name": "General Consultation",
+      "price": 1500
+    },
+    {
+      "id": "2",
+      "name": "Laboratory Tests",
+      "price": 2500
+    },
+    {
+      "id": "3",
+      "name": "Dental Cleaning",
+      "price": 3000
+    },
+    {
+      "id": "4",
+      "name": "X-Ray",
+      "price": 3500
+    },
+    {
+      "id": "5",
+      "name": "MRI Scan",
+      "price": 8000
+    },
+    {
+      "id": "6",
+      "name": "Physiotherapy Session",
+      "price": 2000
+    },
+    {
+      "id": "7",
+      "name": "Antenatal Check-up",
+      "price": 1800
+    },
+    {
+      "id": "8",
+      "name": "Skin Treatment",
+      "price": 2700
+    }
   ],
   "billing": [
-    { "id": 1, "patientId": 1, "amount": 1500, "status": "Paid" },
-    { "id": 2, "patientId": 3, "amount": 3500, "status": "Unpaid" },
-    { "id": 3, "patientId": 6, "amount": 2000, "status": "Paid" },
-    { "id": 4, "patientId": 10, "amount": 8000, "status": "Unpaid" },
-    { "id": 5, "patientId": 12, "amount": 2700, "status": "Paid" },
-    { "id": 6, "patientId": 15, "amount": 1500, "status": "Unpaid" },
-    { "id": 7, "patientId": 18, "amount": 2500, "status": "Paid" }
+    {
+      "id": "1",
+      "patientId": 1,
+      "amount": 1500,
+      "status": "Paid"
+    },
+    {
+      "id": "2",
+      "patientId": 3,
+      "amount": 3500,
+      "status": "Unpaid"
+    },
+    {
+      "id": "3",
+      "patientId": 6,
+      "amount": 2000,
+      "status": "Paid"
+    },
+    {
+      "id": "4",
+      "patientId": 10,
+      "amount": 8000,
+      "status": "Unpaid"
+    },
+    {
+      "id": "5",
+      "patientId": 12,
+      "amount": 2700,
+      "status": "Paid"
+    },
+    {
+      "id": "6",
+      "patientId": 15,
+      "amount": 1500,
+      "status": "Unpaid"
+    },
+    {
+      "id": "7",
+      "patientId": 18,
+      "amount": 2500,
+      "status": "Paid"
+    }
   ]
 }
