@@ -139,3 +139,61 @@ const ServicesCatalog = () => {
     </div>
   );
 };
+// Helper functions to get service details based on service name
+const getServiceCategory = (serviceName) => {
+  const categories = {
+    'General Consultation': 'Primary Care',
+    'Laboratory Tests': 'Clinical Laboratory',
+    'Dental Cleaning': 'Dental Services',
+    'X-Ray': 'Imaging Services',
+    'MRI Scan': 'Imaging Services',
+    'Physiotherapy Session': 'Rehabilitation',
+    'Antenatal Check-up': 'Maternity Care',
+    'Skin Treatment': 'Dermatology'
+  };
+  return categories[serviceName] || 'Medical Service';
+};
+
+const getServiceDescription = (serviceName) => {
+  const descriptions = {
+    'General Consultation': 'Comprehensive medical examination and health assessment',
+    'Laboratory Tests': 'Blood tests, urinalysis, pathology and diagnostic services',
+    'Dental Cleaning': 'Professional dental cleaning and oral health examination',
+    'X-Ray': 'X-Ray, CT Scan, MRI, Ultrasound imaging services',
+    'MRI Scan': 'Magnetic Resonance Imaging and advanced diagnostic scanning',
+    'Physiotherapy Session': 'Physical therapy and rehabilitation services',
+    'Antenatal Check-up': 'Pregnancy care and maternal health monitoring',
+    'Skin Treatment': 'Dermatological treatments and skin care services'
+  };
+  return descriptions[serviceName] || 'Professional medical service';
+};
+
+const getServicePreparation = (serviceName) => {
+  const preparations = {
+    'General Consultation': 'No special preparation required',
+    'Laboratory Tests': 'Fasting required for certain tests (8–12 hours)',
+    'Dental Cleaning': 'Regular oral hygiene maintenance',
+    'X-Ray': 'Fasting may be required for certain scans',
+    'MRI Scan': 'Remove all metal objects; consultation required',
+    'Physiotherapy Session': 'Wear comfortable clothing',
+    'Antenatal Check-up': 'Regular pregnancy monitoring',
+    'Skin Treatment': 'Consultation required for specific treatments'
+  };
+  return preparations[serviceName] || 'Consultation required';
+};
+
+const getServiceAvailability = (serviceName) => {
+  const availability = {
+    'General Consultation': 'Mon-Fri: 8 AM - 6 PM',
+    'Laboratory Tests': '24/7',
+    'Dental Cleaning': 'Mon-Sat: 9 AM - 5 PM',
+    'X-Ray': '24/7',
+    'MRI Scan': '24/7',
+    'Physiotherapy Session': 'Mon-Sat: 8 AM - 6 PM',
+    'Antenatal Check-up': 'Mon-Fri: 9 AM - 5 PM',
+    'Skin Treatment': 'Mon-Fri: 9 AM - 5 PM'
+  };
+  return availability[serviceName] || 'Mon-Fri: 9 AM - 5 PM';
+};
+
+export default ServicesCatalog;
