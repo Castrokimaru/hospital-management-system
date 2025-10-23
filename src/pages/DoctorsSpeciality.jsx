@@ -124,4 +124,43 @@ const DoctorsSpeciality = () => {
                 <h4 className="text-xl font-semibold text-gray-900 mb-2">
                   {doctor.name}
                 </h4>
-               
+                
+                {/* Display doctor specialty as a badge */}
+                <div className="mb-3">
+                  <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+                    {/* Replace 'Practitioner' with 'Practice' for better display */}
+                    {doctor.specialty.replace('Practitioner', 'Practice')}
+                  </span>
+                </div>
+
+                {/* Display generated department code */}
+                <p className="text-gray-700 font-medium mb-4">
+                  {generateDepartmentCode(doctor.specialty, doctor.id)}
+                </p>
+
+                {/* Display availability status with icon */}
+                <div className="flex items-center text-gray-600">
+                  <svg
+                    className="w-4 h-4 mr-2 text-green-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    {/* Plus icon indicating availability */}
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-sm">{doctor.availability}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default DoctorsSpeciality;
