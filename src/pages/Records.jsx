@@ -33,3 +33,43 @@ const PatientRecords = () => {
     }));
     setPatients(patientsWithVisits);
   }, []);
+
+  // Random insurance provider
+  const randomInsurance = () => {
+    const insurances = ["JUBILEE", "AAR", "Britam", "SHA", "APA", "Madison"];
+    return insurances[Math.floor(Math.random() * insurances.length)];
+  };
+
+  // Search filter
+  const filteredPatients = patients.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="bg-gray-50 min-h-screen p-6">
+      {/* Heading */}
+      <h1 className="text-3xl font-bold text-blue-700 mb-2">Patient Records</h1>
+      <p className="text-gray-600 mb-6">
+        View, search, and manage all patient records within the hospital system.
+      </p>
+
+      {/* Search Bar Section */}
+      <div className="bg-white p-4 rounded-lg shadow mb-6">
+        <input
+          type="text"
+          placeholder="Search patient by name..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      {/* Patient Directory */}
+      <div className="bg-white rounded-lg shadow p-4">
+        <div className="grid grid-cols-5 font-semibold text-gray-700 border-b pb-2 mb-3">
+          <span>Patient Name</span>
+          <span>Insurance</span>
+          <span>Contact</span>
+          <span>Last Visit</span>
+          <span>Action</span>
+        </div>
