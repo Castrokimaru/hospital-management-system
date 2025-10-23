@@ -63,4 +63,13 @@ const ServicesCatalog = () => {
           <div className="border-t border-gray-400 mb-8"></div>
         </div>
 
-       
+        {/* Available Medical Services Section */}
+        <div className="mb-2">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+            Available Medical Services
+          </h3>
+          <p className="text-gray-600 text-lg mb-8">
+            Complete list of services offered by the hospital
+          </p>
+
+         
