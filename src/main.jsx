@@ -5,13 +5,13 @@ import App from './App.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import ToolBar from './ToolBar.jsx'
 import About from './pages/About.jsx'
-<<<<<<< Updated upstream
+
 import Home from './pages/Home.jsx' 
 import Layout from './LayOut.jsx'
-=======
+
 import Appointments from './pages/Appointments.jsx'
 import DoctorAv from './pages/DoctorAv.jsx'
->>>>>>> Stashed changes
+
 
 const router = createBrowserRouter ([ 
    {
