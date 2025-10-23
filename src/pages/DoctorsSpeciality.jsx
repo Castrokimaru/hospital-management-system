@@ -24,5 +24,3 @@ const DoctorsSpeciality = () => {
       // Handle errors during fetch operation
       .catch((err) => console.error("Error fetching doctors:", err));
   }, []); // Empty dependency array ensures this runs only once on component mount
-
-  
