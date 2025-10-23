@@ -43,7 +43,29 @@ const DoctorAvailability = () => {
             </tr>
           </thead>
 
-         
+          {/* Table body: maps through each doctor and creates a row */}
+          <tbody>
+            {doctors.map((doctor) => (
+              // Each row uses doctor ID as a unique key
+              <tr key={doctor.id} className="border-b hover:bg-gray-50 transition">
+                {/* Doctor ID */}
+                <td className="px-4 py-3 font-medium text-gray-700">{doctor.id}</td>
+
+                {/* Doctor Name */}
+                <td className="px-4 py-3">{doctor.name}</td>
+
+                {/* Doctor Specialty */}
+                <td className="px-4 py-3">{doctor.specialty}</td>
+
+                {/* Doctor Availability Schedule */}
+                <td className="px-4 py-3 text-gray-600">{doctor.availability}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 // Export the component so it can be imported and used in other parts of the app
