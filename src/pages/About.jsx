@@ -2,15 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function About() {
-  const departments = [
-    { name: 'IT Support', ext: '1234', email: 'it@hospital.com' },
-    { name: 'Pharmacy', ext: '1235', email: 'pharmacy@hospital.com' },
-    { name: 'Billing', ext: '1236', email: 'billing@hospital.com' },
-    { name: 'Emergency', ext: '911', email: 'emergency@hospital.com' },
-    { name: 'Administration', ext: '1000', email: 'admin@hospital.com' },
-    { name: 'Laboratory', ext: '1237', email: 'lab@hospital.com' },
-  ];
-
+ 
   return (
     <div className="bg-blue-50 min-h-screen flex flex-col items-center justify-center py-10 px-4">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-4xl p-8">

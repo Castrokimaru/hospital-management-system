@@ -1,16 +1,23 @@
 import React from 'react';
 import ToolBar from './ToolBar';
+import { Outlet } from 'react-router-dom';
+
 
 
  function LayOut() {
     return (
-        <div className="flex min-h-screen  bg-gray-50">
+    <div className="flex">
+      {/* Sidebar Container */}
+      <aside className="fixed left-0 top-0 h-full w-64 bg-blue-300 shadow-lg">
         <ToolBar />
-        <div className="flex-1 p-8 ">
-          
-        </div>
-        </div>
-    );
+      </aside>
+
+      {/* Main content area */}
+      <main className="ml-64 w-[calc(100%-16rem)] min-h-screen bg-white p-10 overflow-auto">
+        <Outlet />
+      </main>
+    </div>
+  );
     }
 
     export default LayOut;

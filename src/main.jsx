@@ -5,10 +5,18 @@ import App from './App.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import ToolBar from './ToolBar.jsx'
 import About from './pages/About.jsx'
+import Home from './pages/Home.jsx' 
+import Layout from './LayOut.jsx'
 
-const router = createBrowserRouter ([                       // the array of objects store the different routes
+const router = createBrowserRouter ([ 
+   {
+    path: "/",
+    element: <Layout />, // this wraps all your pages with ToolBar
+    children: [                      // the array of objects store the different routes
   {path:"/", 
-  element:<App />},
+  element:<Home/>},
+  {path:"/home",
+  element:<Home />},
   {path:"/services",
   element:<ToolBar />},
   {path:"/about",
@@ -23,6 +31,8 @@ const router = createBrowserRouter ([                       // the array of obje
   element:<ToolBar />},
   {path:"/billing",
   element:<ToolBar />},
+  ]
+  }
   
 
 ]);

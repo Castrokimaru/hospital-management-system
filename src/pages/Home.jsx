@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from "react"; // Import React and two hooks for data handling
+import { Link } from "react-router-dom"; // Import Link for navigation without page reload
 
+function Home() {
+  const [appointments, setAppointments] = useState([]); // Store appointment data
+  const [patients, setPatients] = useState([]); // Store patient data
+  const [doctors, setDoctors] = useState([]); // Store doctor data
 
-function Home () {
-    return (
-        <div>
-            <h1>HOME</h1>
-        </div>
-
-    )
-
-}
-
-export default Home;
-
-// This is a simple Home component that can be used in your React application.
-// It currently displays a heading "HOME". You can expand this component with more content as needed.
+  useEffect(() => { // Runs when the page first loads
+    fetch("http://localhost:5001/appointments") // Fetch appointment data
+      .then((res) => res.json()) // Convert response to JSON
+      .then((data) => setAppointments(data)) // Save data to state
+      .catch((err) => console.error("Error fetching appointments:", err)); // Log errors if any
