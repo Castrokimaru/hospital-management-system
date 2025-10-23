@@ -46,4 +46,18 @@ function Home() {
         </div>
       </nav>
 
+      {/* Main Dashboard Area */}
+      <div className="flex-grow: flex flex-col items-center py-10 px-4"> {/* Centers dashboard in remaining space */}
+        <div className="bg-white shadow-2xl rounded-2xl w-full max-w-5xl p-8 space-y-8"> {/* Main white container with rounded corners */}
+          
+          {/* Header */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-blue-700 mb-2">Dashboard</h2> {/* Dashboard title */}
+            <p className="text-gray-500">Welcome to MediCare Management System</p> {/* Subtext */}
+          </div>
+
+        
+  );
+}
+
 export default Home; // Export component so it can be used in App.jsx
