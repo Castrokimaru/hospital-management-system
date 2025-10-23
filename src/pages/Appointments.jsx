@@ -106,7 +106,43 @@ const AppointmentsManagement = () => {
                 <td className="px-4 py-3">{apt.date}</td>
                 <td className="px-4 py-3">{apt.time}</td>
 
-               
+                {/* Colored status badge */}
+                <td className="px-4 py-3">
+                  <span
+                    className={`px-2 py-1 rounded-full text-sm font-semibold ${statusColors[apt.status]}`}
+                  >
+                    {apt.status}
+                  </span>
+                </td>
+
+                {/* Action Buttons (Edit/Delete placeholders) */}
+                <td className="px-4 py-3">
+                  <button className="text-blue-600 hover:text-blue-800 font-medium mr-3">
+                    Edit
+                  </button>
+                  <button className="text-red-600 hover:text-red-800 font-medium">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+
+            {/* Display a message when no appointments match filters */}
+            {filteredAppointments.length === 0 && (
+              <tr>
+                <td
+                  colSpan="7"
+                  className="text-center text-gray-500 py-6 italic"
+                >
+                  No appointments found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 // Export the component for use in other files
