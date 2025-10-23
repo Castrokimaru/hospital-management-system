@@ -50,4 +50,17 @@ const ServicesCatalog = () => {
               Medical services and facility information
             </p>
           </div>
-      
+
+          {/* Service Catalog & Facility Status */}
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-semibold text-gray-800">
+              Service Catalog
+            </h3>
+            <span className="text-lg text-gray-600">Facility Status</span>
+          </div>
+
+          {/* Horizontal Line */}
+          <div className="border-t border-gray-400 mb-8"></div>
+        </div>
+
+       
