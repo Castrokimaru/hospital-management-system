@@ -114,4 +114,28 @@ const ServicesCatalog = () => {
                       </div>
                     </div>
 
-                   
+                    {/* Availability Badge - Right Aligned */}
+                    <div className="text-right ml-4">
+                      <span className={`inline-block px-4 py-2 rounded text-lg font-semibold border ${
+                        getServiceAvailability(service.name).includes('24/7') 
+                          ? 'bg-green-50 text-green-800 border-green-200' 
+                          : 'bg-blue-50 text-blue-800 border-blue-200'
+                      }`}>
+                        {getServiceAvailability(service.name)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Separator line between services */}
+                {index < services.length - 1 && (
+                  <div className="border-t border-gray-400 my-8"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
