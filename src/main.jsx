@@ -11,7 +11,8 @@ import Layout from './LayOut.jsx'
 
 import Appointments from './pages/Appointments.jsx'
 import DoctorAv from './pages/DoctorAv.jsx'
-
+import DoctorsSpeciality from './pages/DoctorsSpeciality.jsx'
+import ServicesCatalog from './pages/Services.jsx'
 
 const router = createBrowserRouter ([ 
    {
@@ -23,19 +24,15 @@ const router = createBrowserRouter ([
   {path:"/home",
   element:<Home />},
   {path:"/services",
-  element:<ToolBar />},
+  element:<ServicesCatalog /> },
   {path:"/about",
   element:<About />},
   {path:"/appointments",
   element:<Appointments />},
   {path:"/doctors",
-  element:<ToolBar />},
+  element:<DoctorsSpeciality />},
   {path:"/availability",
   element:<DoctorAv />},
-  {path:"/records",
-  element:<ToolBar />},
-  {path:"/billing",
-  element:<ToolBar />},
   ]
   }
   

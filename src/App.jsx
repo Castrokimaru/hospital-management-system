@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import ToolBar from "./ToolBar";
+import DoctorsSpeciality from "./pages/DoctorsSpeciality";
 
 
 
@@ -11,11 +12,10 @@ import ToolBar from "./ToolBar";
       <>
       <div>
         <ToolBar />
+        
 
         <div>
-          
 
-          
         </div>
 
 
