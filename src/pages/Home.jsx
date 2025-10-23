@@ -29,3 +29,21 @@ function Home() {
 
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
   const todaysAppointments = appointments.filter((a) => a.date === today); // Filter only today's appointments
+
+  return (
+    <div className="bg-blue-50 min-h-screen flex flex-col"> {/* Light blue background and vertical layout */}
+      
+      {/* Navbar Section */}
+      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow-md rounded-b-2xl"> {/* Top bar with rounded bottom edges */}
+        <h1 className="text-2xl font-bold">MediCare Management System</h1> {/* App title */}
+        
+        <div className="flex space-x-6 text-sm font-medium"> {/* Links spaced evenly */}
+          <Link to="/" className="hover:underline">Home</Link> {/* Home link */}
+          <Link to="/about" className="hover:underline">About Us</Link> {/* About link */}
+          <Link to="/patients" className="hover:underline">Patients</Link> {/* Patients link */}
+          <Link to="/appointments" className="hover:underline">Appointments</Link> {/* Appointments link */}
+          <Link to="/doctors" className="hover:underline">Doctors</Link> {/* Doctors link */}
+        </div>
+      </nav>
+
+export default Home; // Export component so it can be used in App.jsx
