@@ -15,3 +15,21 @@ const PatientRecords = () => {
     { id: 7, name: "Samuel Mutua", age: 48, gender: "Male", phone: "0702123444", email: "s.mutua@example.com", diagnosis: "Diabetes", doctorId: 4 },
     { id: 8, name: "Lucy Wairimu", age: 30, gender: "Female", phone: "0726123490", email: "l.wairimu@example.com", diagnosis: "Pregnancy Check-up", doctorId: 8 },
   ];
+
+  // Generate random date between Jan 2024 and today
+  const randomLastVisit = () => {
+    const start = new Date(2024, 0, 1);
+    const end = new Date();
+    const randomDate = new Date(start.getTime() + Math.random() * (end - start));
+    return randomDate.toLocaleDateString("en-GB");
+  };
+
+  // Add randomized last visits to patients on mount
+  useEffect(() => {
+    const patientsWithVisits = basePatients.map((p) => ({
+      ...p,
+      insurance: randomInsurance(),
+      lastVisit: randomLastVisit(),
+    }));
+    setPatients(patientsWithVisits);
+  }, []);
