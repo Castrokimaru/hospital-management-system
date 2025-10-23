@@ -1,169 +1,167 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Home() {
+// Home component displays dashboard, stats, and actions
+export default function Home() {
+  // State variables for appointments, patients, doctors, and loading state
   const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch data from db.json
+  // Today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split("T")[0];
+
+  // Fetch data from db.json on component mount
   useEffect(() => {
-    const endpoints = ["appointments", "patients", "doctors"];
-    endpoints.forEach((endpoint) =>
-      fetch(`http://localhost:5001/${endpoint}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (endpoint === "appointments") setAppointments(data);
-          if (endpoint === "patients") setPatients(data);
-          if (endpoint === "doctors") setDoctors(data);
-        })
-        .catch((err) => console.error(`Error fetching ${endpoint}:`, err))
+    ["appointments", "patients", "doctors"].forEach((key) =>
+      fetch(`http://localhost:5001/${key}`)
+        .then((r) => r.json())
+        .then((d) =>
+          key === "appointments"
+            ? setAppointments(d)
+            : key === "patients"
+            ? setPatients(d)
+            : setDoctors(d)
+        )
     );
   }, []);
 
-  const today = new Date().toISOString().split("T")[0];
+  // Filter appointments scheduled for today
   const todaysAppointments = appointments.filter((a) => a.date === today);
 
-  // Add new appointment
-  const handleAddAppointment = async () => {
+  // Function to add a new appointment
+  const addAppointment = async () => {
     if (!patients.length || !doctors.length)
       return alert("Add patients and doctors first.");
 
     setLoading(true);
-    try {
-      const newAppointment = {
-        patientId: patients[Math.floor(Math.random() * patients.length)].id,
-        doctorId: doctors[Math.floor(Math.random() * doctors.length)].id,
-        date: today,
-        time: "10:00 AM",
-        status: "Pending",
-      };
-      const res = await fetch("http://localhost:5001/appointments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newAppointment),
+
+    // Create a new appointment object with random patient and doctor
+    const newApt = {
+      patientId: patients[Math.random() * patients.length | 0].id,
+      doctorId: doctors[Math.random() * doctors.length | 0].id,
+      date: today,
+      time: "10:00 AM",
+      status: "Pending",
+    };
+
+    // POST the new appointment to db.json
+    const res = await fetch("http://localhost:5001/appointments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newApt),
+    });
+
+    // Update state with the newly added appointment
+    setAppointments([...appointments, await res.json()]);
+    setLoading(false);
+  };
+
+  // Function to cancel all today's appointments
+  const cancelAppointments = async () => {
+    if (!todaysAppointments.length) return alert("No appointments to cancel.");
+
+    // Delete each appointment for today from db.json
+    for (const a of todaysAppointments)
+      await fetch(`http://localhost:5001/appointments/${a.id}`, {
+        method: "DELETE",
       });
-      const saved = await res.json();
-      setAppointments([...appointments, saved]);
-      alert("Appointment added successfully!");
-    } catch {
-      alert("Error adding appointment.");
-    } finally {
-      setLoading(false);
-    }
+
+    // Update state to remove cancelled appointments
+    setAppointments(appointments.filter((a) => a.date !== today));
+    alert("Today's appointments cancelled.");
   };
 
   return (
-    <div className="bg-blue-50 min-h-screen flex flex-col">
-      {/* Navbar */}
-      <nav className="bg-blue-700 text-white p-4 flex justify-between items-center shadow-md rounded-b-2xl">
-        <h1 className="text-2xl font-bold">MediCare Management System</h1>
-        <div className="flex space-x-6 text-sm font-medium">
-          {["/", "/about", "/patients", "/appointments", "/doctors"].map(
-            (path, i) => (
-              <Link key={i} to={path} className="hover:underline">
-                {["Home", "About Us", "Patients", "Appointments", "Doctors"][i]}
-              </Link>
-            )
-          )}
+    <div className="bg-blue-50 min-h-screen">
+      {/* Navbar with title and navigation links */}
+      <nav className="bg-blue-700 text-white p-4 flex justify-between rounded-b-2xl">
+        <h1 className="text-2xl font-bold">MediCare System</h1>
+        <div className="flex space-x-4 text-sm">
+          {["Home", "About", "Patients", "Appointments", "Doctors"].map((t, i) => (
+            <Link key={i} to={["/", "/about", "/patients", "/appointments", "/doctors"][i]}>
+              {t}
+            </Link>
+          ))}
         </div>
       </nav>
 
-      {/* Dashboard */}
-      <div className="flex-grow: flex flex-col items-center py-10 px-4">
-        <div className="bg-white shadow-2xl rounded-2xl w-full max-w-5xl p-8 space-y-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-blue-700 mb-2">Dashboard</h2>
-            <p className="text-gray-500">Welcome to MediCare Management System</p>
-          </div>
+      {/* Main content */}
+      <div className="max-w-5xl mx-auto p-8 space-y-8">
+        <h2 className="text-2xl font-bold text-center text-blue-700">Dashboard</h2>
 
-          {/* Stats */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              ["Appointments Today", todaysAppointments.length, "blue"],
-              ["Patients Checked In", 18, "green"],
-              ["Doctors On Duty", doctors.length, "yellow"],
-            ].map(([title, value, color], i) => (
-              <div key={i} className={`bg-${color}-100 p-5 rounded-xl shadow`}>
-                <h3 className={`text-lg font-semibold text-${color}-700 mb-1`}>
-                  {title}
-                </h3>
-                <p className="text-3xl font-bold text-gray-800">{value}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Quick Actions */}
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
-            <div className="grid sm:grid-cols-3 gap-4">
-              <button
-                onClick={handleAddAppointment}
-                disabled={loading}
-                className={`p-3 rounded-xl text-white ${
-                  loading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
-                }`}
-              >
-                {loading ? "Scheduling..." : "Schedule New Appointment"}
-              </button>
-              <button className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700">
-                Check-In Patient
-              </button>
-              <button className="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700">
-                Search Patient Record
-              </button>
-            </div>
-          </div>
-
-          {/* Today's Schedule */}
-          <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Schedule</h3>
-            <p className="text-gray-500 mb-4">
-              Upcoming appointments for {new Date().toLocaleDateString()}
-            </p>
-            {todaysAppointments.length ? (
-              todaysAppointments.map((a) => {
-                const patient = patients.find((p) => p.id === a.patientId);
-                const doctor = doctors.find((d) => d.id === a.doctorId);
-                return (
-                  <div
-                    key={a.id}
-                    className="border border-gray-200 rounded-xl p-4 bg-white shadow-sm hover:shadow-md"
-                  >
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <p className="text-sm text-gray-500">{a.time}</p>
-                        <h4 className="font-semibold text-blue-700">
-                          {patient?.name || "Unknown Patient"}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {doctor ? `${doctor.name} • ${doctor.specialty}` : "Unknown Doctor"}
-                        </p>
-                      </div>
-                      <span
-                        className={`px-3 py-1 text-sm rounded-full ${
-                          a.status === "Confirmed"
-                            ? "bg-green-100 text-green-700"
-                            : a.status === "Pending"
-                            ? "bg-yellow-100 text-yellow-700"
-                            : "bg-red-100 text-red-700"
-                        }`}
-                      >
-                        {a.status.toLowerCase()}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <p className="text-gray-500">No appointments scheduled for today.</p>
-            )}
-          </div>
+        {/* Dashboard cards showing stats */}
+        <div className="grid sm:grid-cols-3 gap-6">
+          <Card title="Appointments Today" value={todaysAppointments.length} color="blue" />
+          <Card title="Patients Checked In" value="18" color="green" />
+          <Card title="Doctors On Duty" value={doctors.length} color="yellow" />
         </div>
+
+        {/* Quick action buttons */}
+        <div className="grid sm:grid-cols-3 gap-4">
+          <Button onClick={addAppointment} color="blue">
+            {loading ? "Scheduling..." : "New Appointment"}
+          </Button>
+          <Button onClick={cancelAppointments}  color="blue">
+            Clear Appointments
+          </Button>
+          <Button color="indigo">Search Patient</Button>
+        </div>
+
+        {/* Today's schedule */}
+        <h3 className="text-lg font-semibold text-gray-800 mt-8">Today's Schedule</h3>
+        {todaysAppointments.length ? (
+          todaysAppointments.map((a) => {
+            const p = patients.find((x) => x.id === a.patientId);
+            const d = doctors.find((x) => x.id === a.doctorId);
+            return (
+              <div key={a.id} className="border p-3 rounded-xl shadow-sm">
+                <div className="flex justify-between">
+                  <div>
+                    <p className="text-sm text-gray-500">{a.time}</p>
+                    <h4 className="font-semibold text-blue-700">{p?.name || "Unknown"}</h4>
+                    <p className="text-sm text-gray-600">
+                      {d ? `${d.name} • ${d.specialty}` : "Unknown Doctor"}
+                    </p>
+                  </div>
+                  <span
+                    className={`px-3 py-1 text-sm rounded-full ${
+                      a.status === "Pending"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : a.status === "Confirmed"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {a.status.toLowerCase()}
+                  </span>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p className="text-gray-500">No appointments today.</p>
+        )}
       </div>
     </div>
   );
 }
 
-export default Home;
+// Card component for dashboard stats
+const Card = ({ title, value, color }) => (
+  <div className={`bg-${color}-100 p-4 rounded-xl shadow`}>
+    <h3 className={`text-${color}-700 font-semibold`}>{title}</h3>
+    <p className="text-2xl font-bold">{value}</p>
+  </div>
+);
+
+// Reusable Button component
+const Button = ({ onClick, color, children }) => (
+  <button
+    onClick={onClick}
+    className={`bg-${color}-600 hover:bg-${color}-700 text-white p-3 rounded-xl`}
+  >
+    {children}
+  </button>
+);
