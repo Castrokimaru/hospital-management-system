@@ -72,4 +72,46 @@ const ServicesCatalog = () => {
             Complete list of services offered by the hospital
           </p>
 
-         
+          {/* Services List */}
+          <div className="space-y-8">
+            {services.map((service, index) => (
+              <div key={service.id}>
+                {/* Service Item */}
+                <div className="bg-white rounded-none p-1">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      {/* Service Name with bullet point */}
+                      <div className="flex items-start mb-2">
+                        <span className="text-2xl text-gray-800 mr-3 mt-1">•</span>
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                            {service.name}
+                          </h4>
+                          
+                          {/* Service Category */}
+                          <p className="text-gray-700 text-lg mb-2 font-medium">
+                            {getServiceCategory(service.name)}
+                          </p>
+                          
+                          {/* Service Description */}
+                          <p className="text-gray-600 text-lg mb-3">
+                            {getServiceDescription(service.name)}
+                          </p>
+                          
+                          {/* Preparation */}
+                          <div className="text-gray-600 text-lg">
+                            <span className="font-medium">Preparation:</span>
+                            <p className="ml-2 inline">{getServicePreparation(service.name)}</p>
+                          </div>
+
+                          {/* Price Display */}
+                          <div className="mt-3">
+                            <span className="inline-block bg-blue-50 text-blue-800 text-lg font-semibold px-4 py-2 border border-blue-200 rounded">
+                              Price: Ksh{service.price.toLocaleString()}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                   
