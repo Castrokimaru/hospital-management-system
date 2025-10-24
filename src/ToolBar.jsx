@@ -22,7 +22,7 @@ function ToolBar() {
 
           <Link
             to="/billing"
-            className="bg-yellow-200 rounded-3xl py-3 px-6 font-medium text-center hover:bg-yellow-300 hover:text-blue-800 duration-300"
+            className="bg-yellow-200 rounded-3xl py-3 px-6 font-medium text-center hover:bg-yellow-300 hover:text-black duration-300"
           >
             Billing & Insurance
           </Link>

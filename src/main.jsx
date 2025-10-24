@@ -34,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/billing", element: <BillingInsurance /> }, // Billing and insurance
     ],
   },
+
 ]);
 
  //Uses StrictMode for highlighting potential problems during development
