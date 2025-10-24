@@ -121,7 +121,7 @@ Push your code to GitHub.
 Go to Vercel Dashboard
 .
 
-Import your GitHub repository.
+## Import your GitHub repository.
 
 Set the build command to:
 
