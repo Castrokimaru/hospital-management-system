@@ -11,54 +11,33 @@ import Appointments from './pages/Appointments.jsx'
 import DoctorAv from './pages/DoctorAv.jsx'
 import DoctorsSpeciality from './pages/DoctorsSpeciality.jsx'
 import ServicesCatalog from './pages/Services.jsx'
-<<<<<<< Updated upstream
 import PatientRecords from './pages/Records.jsx'
-=======
 import BillingInsurance from './pages/BillingInsurance.jsx'
->>>>>>> Stashed changes
+
+//React Router configuration for a healthcare/medical application/
+ 
 
 const router = createBrowserRouter([
   {
     path: "/",
-<<<<<<< Updated upstream
-    element: <Layout />, // Wraps all pages with the main layout
+    element: <Layout />, // Main layout wrapper that provides consistent UI across all pages
     children: [
-      { path: "/", element: <Home /> },
-      { path: "/home", element: <Home /> },
-      { path: "/services", element: <ServicesCatalog /> },
-      { path: "/about", element: <About /> },
-      { path: "/appointments", element: <Appointments /> },
-      { path: "/doctors", element: <DoctorsSpeciality /> },
-      { path: "/availability", element: <DoctorAv /> },
-      { path: "/records", element: <PatientRecords /> },
-      { path: "/billing", element: <ToolBar /> },
+      // Route definitions for the application
+      { path: "/", element: <Home /> },              // Default route - homepage
+      { path: "/home", element: <Home /> },          // Explicit home route
+      { path: "/services", element: <ServicesCatalog /> }, // Medical services catalog
+      { path: "/about", element: <About /> },        // About page
+      { path: "/appointments", element: <Appointments /> }, // Appointment scheduling
+      { path: "/doctors", element: <DoctorsSpeciality /> }, // Doctor specialties listing
+      { path: "/availability", element: <DoctorAv /> },    // Doctor availability
+      { path: "/records", element: <PatientRecords /> },   // Patient medical records
+      { path: "/billing", element: <BillingInsurance /> }, // Billing and insurance
     ],
   },
-=======
-    element: <Layout />, // this wraps all your pages with ToolBar
-    children: [                      // the array of objects store the different routes
-  {path:"/", 
-  element:<Home/>},
-  {path:"/home",
-  element:<Home />},
-  {path:"/services",
-  element:<ServicesCatalog /> },
-  {path:"/about",
-  element:<About />},
-  {path:"/appointments",
-  element:<Appointments />},
-  {path:"/doctors",
-  element:<DoctorsSpeciality />},
-  {path:"/availability",
-  element:<DoctorAv />},
-  {path:"/billing",
-  element:<BillingInsurance/>},
-  ]
-  }
-  
-
->>>>>>> Stashed changes
 ]);
+
+ //Uses StrictMode for highlighting potential problems during development
+ //Wraps the app with RouterProvider to enable client-side routing
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
