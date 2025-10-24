@@ -47,7 +47,7 @@ hospital-management-system/
 ├── src/
 │   ├── components/
 │   │   ├── ToolBar.jsx
-│   │   └── ThemeToggle.jsx
+│   │   └── LayOut.jsx
 │   ├── pages/
 │   │   ├── Home.jsx
 │   │   ├── AboutUs.jsx
@@ -56,7 +56,6 @@ hospital-management-system/
 │   │   ├── DoctorAvailability.jsx
 │   │   ├── Appointments.jsx
 │   │   └── BillingInsurance.jsx
-│   ├── LayOut.jsx
 │   ├── main.jsx
 │   └── index.css
 ├── db.json
@@ -150,10 +149,14 @@ Modular structure makes it easy to add new pages such as pharmacy or staff manag
 
 Contributors
 Name	Role
-Bill Otiende	Frontend Developer
-Castro Kimaru   Backend  Developer
-John Kimani     UI/UX  Designer
-Debora Waweru   Product Manager
+Bill Otiende	Frontend Developer,
+
+Castro Kimaru   Backend  Developer,
+
+John Kimani     UI/UX  Designer,
+
+Debora Waweru   Product Manager.
+
 License
 
 This project is licensed under the MIT License
