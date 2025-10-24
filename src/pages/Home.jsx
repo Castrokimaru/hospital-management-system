@@ -15,7 +15,7 @@ export default function Home() {
   // Fetch appointments, patients, and doctors from JSON server on mount
   useEffect(() => {
     ["appointments", "patients", "doctors"].forEach((key) =>
-      fetch(`http://localhost:5001/${key}`)
+      fetch(`https://json-server-vercel-ytuo.vercel.app/${key}`)
         .then((r) => r.json())
         .then((d) =>
           key === "appointments"
@@ -45,7 +45,7 @@ export default function Home() {
     };
 
     // Send POST request to JSON server
-    const res = await fetch("http://localhost:5001/appointments", {
+    const res = await fetch("https://json-server-vercel-ytuo.vercel.app/appointments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newApt)
@@ -62,7 +62,7 @@ export default function Home() {
 
     // Delete each appointment for today from JSON server
     for (const a of todaysAppointments)
-      await fetch(`http://localhost:5001/appointments/${a.id}`, { method: "DELETE" });
+      await fetch(`https://json-server-vercel-ytuo.vercel.app/appointments/${a.id}`, { method: "DELETE" });
 
     // Update state to remove cancelled appointments
     setAppointments(appointments.filter((a) => a.date !== today));
