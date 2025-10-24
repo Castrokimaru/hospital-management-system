@@ -72,7 +72,7 @@
     },
     {
       "id": "8",
-      "name": "Lucy Wairimu", 
+      "name": "Lucy Wairimu",
       "age": 30,
       "gender": "Female",
       "phone": "0726123490",
@@ -264,25 +264,58 @@
     }
   ],
   "appointments": [
-<<<<<<< Updated upstream
-    { "id": 1, "patientId": 1, "doctorId": 2, "date": "2025-10-22", "time": "10:30 AM", "status": "Confirmed" },
-    { "id": 2, "patientId": 3, "doctorId": 4, "date": "2025-10-23", "time": "11:00 AM", "status": "Pending" },
-    { "id": 3, "patientId": 5, "doctorId": 6, "date": "2025-10-24", "time": "9:00 AM", "status": "Confirmed" },
-    { "id": 4, "patientId": 8, "doctorId": 8, "date": "2025-10-25", "time": "2:30 PM", "status": "Pending" },
-    { "id": 5, "patientId": 10, "doctorId": 7, "date": "2025-10-25", "time": "3:00 PM", "status": "Confirmed" },
-    { "id": 6, "patientId": 2, "doctorId": 1, "date": "2025-10-26", "time": "1:30 PM", "status": "Pending" },
-    { "id": 7, "patientId": 4, "doctorId": 3, "date": "2025-10-27", "time": "10:00 AM", "status": "Confirmed" },
-    { "id": 8, "patientId": 6, "doctorId": 5, "date": "2025-10-27", "time": "11:30 AM", "status": "Cancelled" },
-    { "id": 9, "patientId": 12, "doctorId": 5, "date": "2025-10-28", "time": "3:00 PM", "status": "Confirmed" },
-    { "id": 10, "patientId": 13, "doctorId": 2, "date": "2025-10-28", "time": "12:30 PM", "status": "Confirmed" },
-    { "id": 11, "patientId": 15, "doctorId": 3, "date": "2025-10-29", "time": "9:00 AM", "status": "Pending" },
-    { "id": 12, "patientId": 16, "doctorId": 5, "date": "2025-10-30", "time": "2:00 PM", "status": "Confirmed" },
-    { "id": 13, "patientId": 18, "doctorId": 2, "date": "2025-10-30", "time": "11:00 AM", "status": "Pending" },
-    { "id": 14, "patientId": 19, "doctorId": 6, "date": "2025-11-01", "time": "4:00 PM", "status": "Confirmed" },
-    { "id": 15, "patientId": 20, "doctorId": 4, "date": "2025-11-02", "time": "1:00 PM", "status": "Confirmed" }
-=======
     {
-      "id": 1,
+      "id": "ba5a",
+      "patientId": "14",
+      "doctorId": "4",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "9fcc",
+      "patientId": "11",
+      "doctorId": "4",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "1e18",
+      "patientId": "14",
+      "doctorId": "7",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "3175",
+      "patientId": "18",
+      "doctorId": "3",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "334e",
+      "patientId": "17",
+      "doctorId": "10",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    },
+    {
+      "id": "2c16",
+      "patientId": "1",
+      "doctorId": "1",
+      "date": "2025-10-24",
+      "time": "10:00 AM",
+      "status": "Pending"
+    }
+  ],
+  "appointmentsWithStringIds": [
+    {
+      "id": "1",
       "patientId": 1,
       "doctorId": 2,
       "date": "2025-10-22",
@@ -290,7 +323,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 2,
+      "id": "2",
       "patientId": 3,
       "doctorId": 4,
       "date": "2025-10-23",
@@ -298,7 +331,7 @@
       "status": "Pending"
     },
     {
-      "id": 3,
+      "id": "3",
       "patientId": 5,
       "doctorId": 6,
       "date": "2025-10-24",
@@ -306,7 +339,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 4,
+      "id": "4",
       "patientId": 8,
       "doctorId": 8,
       "date": "2025-10-25",
@@ -314,7 +347,7 @@
       "status": "Pending"
     },
     {
-      "id": 5,
+      "id": "5",
       "patientId": 10,
       "doctorId": 7,
       "date": "2025-10-25",
@@ -322,7 +355,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 6,
+      "id": "6",
       "patientId": 2,
       "doctorId": 1,
       "date": "2025-10-26",
@@ -330,7 +363,7 @@
       "status": "Pending"
     },
     {
-      "id": 7,
+      "id": "7",
       "patientId": 4,
       "doctorId": 3,
       "date": "2025-10-27",
@@ -338,7 +371,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 8,
+      "id": "8",
       "patientId": 6,
       "doctorId": 5,
       "date": "2025-10-27",
@@ -346,7 +379,7 @@
       "status": "Cancelled"
     },
     {
-      "id": 9,
+      "id": "9",
       "patientId": 12,
       "doctorId": 5,
       "date": "2025-10-28",
@@ -354,7 +387,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 10,
+      "id": "10",
       "patientId": 13,
       "doctorId": 2,
       "date": "2025-10-28",
@@ -362,7 +395,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 11,
+      "id": "11",
       "patientId": 15,
       "doctorId": 3,
       "date": "2025-10-29",
@@ -370,7 +403,7 @@
       "status": "Pending"
     },
     {
-      "id": 12,
+      "id": "12",
       "patientId": 16,
       "doctorId": 5,
       "date": "2025-10-30",
@@ -378,7 +411,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 13,
+      "id": "13",
       "patientId": 18,
       "doctorId": 2,
       "date": "2025-10-30",
@@ -386,7 +419,7 @@
       "status": "Pending"
     },
     {
-      "id": 14,
+      "id": "14",
       "patientId": 19,
       "doctorId": 6,
       "date": "2025-11-01",
@@ -394,7 +427,7 @@
       "status": "Confirmed"
     },
     {
-      "id": 15,
+      "id": "15",
       "patientId": 20,
       "doctorId": 4,
       "date": "2025-11-02",
@@ -545,7 +578,6 @@
       "time": "10:00 AM",
       "status": "Pending"
     }
->>>>>>> Stashed changes
   ],
   "services": [
     {
@@ -591,43 +623,43 @@
   ],
   "billing": [
     {
-      "id": 1,
+      "id": "1",
       "patientId": 1,
       "amount": 1500,
       "status": "Paid"
     },
     {
-      "id": 2,
+      "id": "2",
       "patientId": 3,
       "amount": 3500,
       "status": "Unpaid"
     },
     {
-      "id": 3,
+      "id": "3",
       "patientId": 6,
       "amount": 2000,
       "status": "Paid"
     },
     {
-      "id": 4,
+      "id": "4",
       "patientId": 10,
       "amount": 8000,
       "status": "Unpaid"
     },
     {
-      "id": 5,
+      "id": "5",
       "patientId": 12,
       "amount": 2700,
       "status": "Paid"
     },
     {
-      "id": 6,
+      "id": "6",
       "patientId": 15,
       "amount": 1500,
       "status": "Unpaid"
     },
     {
-      "id": 7,
+      "id": "7",
       "patientId": 18,
       "amount": 2500,
       "status": "Paid"
