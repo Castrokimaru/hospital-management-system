@@ -147,8 +147,9 @@ Data fetching implemented using React hooks (useEffect, useState).
 
 Modular structure makes it easy to add new pages such as pharmacy or staff management in the future.
 
-Contributors
-Name	Role
+## Contributors
+Name	           Role
+
 Bill Otiende	Frontend Developer,
 
 Castro Kimaru   Backend  Developer,
