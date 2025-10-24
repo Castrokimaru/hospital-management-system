@@ -1,149 +1,126 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-// Main functional component for managing appointments
 const AppointmentsManagement = () => {
-  // State variable to handle search input
-  const [searchTerm, setSearchTerm] = useState("");
-  // State variable to handle filtering based on appointment status
-  const [statusFilter, setStatusFilter] = useState("all");
+  // state setup
+  const [appointments, setAppointments] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("all");
+  const API = "http://localhost:5001";
 
-  // Sample appointment data (simulating fetched data)
-  const appointments = [
-    { id: 1, patientId: 1, doctorId: 2, date: "2025-10-22", time: "10:30 AM", status: "Confirmed" },
-    { id: 2, patientId: 3, doctorId: 4, date: "2025-10-23", time: "11:00 AM", status: "Pending" },
-    { id: 3, patientId: 5, doctorId: 6, date: "2025-10-24", time: "9:00 AM", status: "Confirmed" },
-    { id: 4, patientId: 8, doctorId: 8, date: "2025-10-25", time: "2:30 PM", status: "Pending" },
-    { id: 5, patientId: 10, doctorId: 7, date: "2025-10-25", time: "3:00 PM", status: "Confirmed" },
-    { id: 6, patientId: 2, doctorId: 1, date: "2025-10-26", time: "1:30 PM", status: "Pending" },
-    { id: 7, patientId: 4, doctorId: 3, date: "2025-10-27", time: "10:00 AM", status: "Confirmed" },
-    { id: 8, patientId: 6, doctorId: 5, date: "2025-10-27", time: "11:30 AM", status: "Cancelled" },
-    { id: 9, patientId: 12, doctorId: 5, date: "2025-10-28", time: "3:00 PM", status: "Confirmed" },
-    { id: 10, patientId: 13, doctorId: 2, date: "2025-10-28", time: "12:30 PM", status: "Confirmed" },
-    { id: 11, patientId: 15, doctorId: 3, date: "2025-10-29", time: "9:00 AM", status: "Pending" },
-    { id: 12, patientId: 16, doctorId: 5, date: "2025-10-30", time: "2:00 PM", status: "Confirmed" },
-    { id: 13, patientId: 18, doctorId: 2, date: "2025-10-30", time: "11:00 AM", status: "Pending" },
-    { id: 14, patientId: 19, doctorId: 6, date: "2025-11-01", time: "4:00 PM", status: "Confirmed" },
-    { id: 15, patientId: 20, doctorId: 4, date: "2025-11-02", time: "1:00 PM", status: "Confirmed" },
-  ];
+  // fetch all data
+  const fetchAll = () => {
+    fetch(`${API}/appointments`).then(r=>r.json()).then(setAppointments);
+    fetch(`${API}/patients`).then(r=>r.json()).then(setPatients);
+    fetch(`${API}/doctors`).then(r=>r.json()).then(setDoctors);
+  };
+  useEffect(()=>{fetchAll();},[]);
 
-  // Filter the list of appointments based on search and status filter
-  const filteredAppointments = appointments.filter((apt) => {
-    // Match the search term with ID, patient ID, doctor ID, or date
-    const matchesSearch =
-      apt.id.toString().includes(searchTerm) ||
-      apt.patientId.toString().includes(searchTerm) ||
-      apt.doctorId.toString().includes(searchTerm) ||
-      apt.date.includes(searchTerm);
-
-    // Match the status filter (or show all if 'all' is selected)
-    const matchesStatus =
-      statusFilter === "all" || apt.status.toLowerCase() === statusFilter.toLowerCase();
-
-    // Return appointments that satisfy both filters
-    return matchesSearch && matchesStatus;
-  });
-
-  // Color codes for different appointment statuses
-  const statusColors = {
-    Confirmed: "bg-green-100 text-green-700",
-    Pending: "bg-yellow-100 text-yellow-800",
-    Cancelled: "bg-red-100 text-red-700",
+  // add new appointment
+  const add = (a) => {
+    fetch(`${API}/appointments`,{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(a)
+    }).then(()=>fetchAll());
   };
 
+  // edit status
+  const edit = (id) => {
+    const s = prompt("New status: Confirmed/Pending/Cancelled");
+    if(!s) return;
+    fetch(`${API}/appointments/${id}`,{
+      method:"PATCH",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({status:s})
+    }).then(()=>fetchAll());
+  };
+
+  // delete one
+  const del = (id) => {
+    fetch(`${API}/appointments/${id}`,{method:"DELETE"}).then(()=>fetchAll());
+  };
+
+  // clear all
+  const clearAll = () => {
+    fetch(`${API}/appointments`).then(r=>r.json()).then(list=>{
+      Promise.all(list.map(a=>fetch(`${API}/appointments/${a.id}`,{method:"DELETE"})))
+      .then(()=>fetchAll());
+    });
+  };
+
+  // helper to get names
+  const getName = (list,id)=>list.find(x=>x.id===id)?.name||"Unknown";
+
+  // filter
+  const filtered = appointments.filter(a=>{
+    const q=search.toLowerCase();
+    const matchQ=!q||[a.id,a.patientId,a.doctorId,a.date,
+      getName(patients,a.patientId),getName(doctors,a.doctorId)]
+      .some(v=>v.toString().toLowerCase().includes(q));
+    const matchS=status==="all"||a.status?.toLowerCase()===status.toLowerCase();
+    return matchQ&&matchS;
+  });
+
+  // form to add
+  const [form,setForm]=useState({patientId:"",doctorId:"",date:"",time:"",status:"Pending"});
+  const submit=e=>{
+    e.preventDefault();
+    add({...form,patientId:+form.patientId,doctorId:+form.doctorId});
+    setForm({patientId:"",doctorId:"",date:"",time:"",status:"Pending"});
+  };
+
+  const colors={Confirmed:"bg-green-100 text-green-700",Pending:"bg-yellow-100 text-yellow-800",Cancelled:"bg-red-100 text-red-700"};
+
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      {/* Page Title and Subtitle */}
-      <h1 className="text-2xl font-bold text-gray-800 mb-4">Appointments Management</h1>
-      <p className="text-gray-600 mb-6">Schedule and manage patient appointments</p>
+  <div className="p-6 bg-gray-50 min-h-screen">
+    <h1 className="text-2xl font-bold mb-4">Appointments</h1>
 
-      {/* Toolbar Section: Search Bar + Status Filter Dropdown */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="Search appointments..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        {/* Status Filter Dropdown */}
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          <option value="all">All Status</option>
-          <option value="Confirmed">Confirmed</option>
-          <option value="Pending">Pending</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
-      </div>
+    {/* Add & clear form */}
+    <form onSubmit={submit} className="flex flex-wrap gap-2 mb-4">
+      {["patientId","doctorId","date","time"].map(f=>
+        <input key={f} placeholder={f} value={form[f]}
+        onChange={e=>setForm({...form,[f]:e.target.value})}
+        className="border px-2"/>)}
+      <select value={form.status} onChange={e=>setForm({...form,status:e.target.value})} className="border px-2">
+        <option>Pending</option><option>Confirmed</option><option>Cancelled</option>
+      </select>
+      <button className="bg-blue-500 text-white px-3">Add</button>
+      <button type="button" onClick={clearAll} className="bg-red-500 text-white px-3">Clear</button>
+    </form>
 
-      {/* Table Section */}
-      <div className="overflow-x-auto shadow-lg rounded-lg bg-white">
-        <table className="min-w-full border-collapse">
-          {/* Table Header */}
-          <thead className="bg-blue-600 text-white">
-            <tr>
-              <th className="px-4 py-3 text-left">ID</th>
-              <th className="px-4 py-3 text-left">Patient ID</th>
-              <th className="px-4 py-3 text-left">Doctor ID</th>
-              <th className="px-4 py-3 text-left">Date</th>
-              <th className="px-4 py-3 text-left">Time</th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th className="px-4 py-3 text-left">Actions</th>
-            </tr>
-          </thead>
-
-          {/* Table Body */}
-          <tbody>
-            {/* Display filtered appointments */}
-            {filteredAppointments.map((apt) => (
-              <tr key={apt.id} className="border-b hover:bg-gray-50 transition">
-                <td className="px-4 py-3 font-medium text-gray-700">{apt.id}</td>
-                <td className="px-4 py-3">{apt.patientId}</td>
-                <td className="px-4 py-3">{apt.doctorId}</td>
-                <td className="px-4 py-3">{apt.date}</td>
-                <td className="px-4 py-3">{apt.time}</td>
-
-                {/* Colored status badge */}
-                <td className="px-4 py-3">
-                  <span
-                    className={`px-2 py-1 rounded-full text-sm font-semibold ${statusColors[apt.status]}`}
-                  >
-                    {apt.status}
-                  </span>
-                </td>
-
-                {/* Action Buttons (Edit/Delete placeholders) */}
-                <td className="px-4 py-3">
-                  <button className="text-blue-600 hover:text-blue-800 font-medium mr-3">
-                    Edit
-                  </button>
-                  <button className="text-red-600 hover:text-red-800 font-medium">
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-
-            {/* Display a message when no appointments match filters */}
-            {filteredAppointments.length === 0 && (
-              <tr>
-                <td
-                  colSpan="7"
-                  className="text-center text-gray-500 py-6 italic"
-                >
-                  No appointments found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+    {/* Search & filter */}
+    <div className="flex gap-2 mb-3">
+      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search..." className="border px-3 py-1 w-1/2"/>
+      <select value={status} onChange={e=>setStatus(e.target.value)} className="border px-3 py-1">
+        <option value="all">All</option><option>Confirmed</option><option>Pending</option><option>Cancelled</option>
+      </select>
+      <button onClick={fetchAll} className="border px-3">Refresh</button>
     </div>
-  );
+
+    {/* Table */}
+    <div className="overflow-x-auto bg-white rounded shadow">
+      <table className="min-w-full">
+        <thead className="bg-blue-600 text-white"><tr>
+          {["ID","Patient","Doctor","Date","Time","Status","Actions"].map(h=><th key={h} className="p-2 text-left">{h}</th>)}
+        </tr></thead>
+        <tbody>
+          {filtered.map(a=>(
+            <tr key={a.id} className="border-b">
+              <td className="p-2">{a.id}</td>
+              <td className="p-2">{getName(patients,a.patientId)}</td>
+              <td className="p-2">{getName(doctors,a.doctorId)}</td>
+              <td className="p-2">{a.date}</td>
+              <td className="p-2">{a.time}</td>
+              <td className="p-2"><span className={`px-2 py-1 rounded ${colors[a.status]}`}>{a.status}</span></td>
+              <td className="p-2"><button onClick={()=>edit(a.id)} className="mr-2 px-2 py-1 bg-amber-300">Edit</button>
+              <button onClick={()=>del(a.id)}className="mr-2 px-2 py-1 bg-red-300">Del</button></td>
+            </tr>
+          ))}
+          {filtered.length===0&&<tr><td colSpan="7" className="p-3 text-center text-gray-500">No appointments</td></tr>} 
+        </tbody>  
+      </table>
+    </div>
+  </div>);
 };
 
-// Export the component for use in other files
 export default AppointmentsManagement;

@@ -75,8 +75,8 @@ export default function Home() {
       <nav className="bg-blue-700 text-white p-4 flex justify-between rounded-b-2xl">
         <h1 className="text-2xl font-bold">MediCare System</h1>
         <div className="flex space-x-4 text-sm">
-          {["Home","About","Patients","Appointments","Doctors"].map((t,i) => (
-            <Link key={i} to={["/","/about","/patients","/appointments","/doctors"][i]}>
+          {["Home","About","Appointments","Doctors"].map((t,i) => (
+            <Link key={i} to={["/","/about","/appointments","/doctors"][i]}>
               {t}
             </Link>
           ))}
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="grid sm:grid-cols-3 gap-4">
           <Button onClick={addAppointment} color="blue">{loading?"Scheduling...":"New Appointment"}</Button>
           <Button onClick={cancelAppointments} color="blue">Cancel Appointments</Button>
-          <Button color="indigo">Search Patient</Button>
+          <Button color="blue">Search Patient</Button>
         </div>
 
         {/* List of today's appointments */}

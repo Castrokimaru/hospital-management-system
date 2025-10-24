@@ -20,20 +20,20 @@ function ToolBar() {
           <Link to="/services" className="text-white hover:text-blue-700 font-medium">Services</Link>
           <Link to="/records" className="text-white hover:text-blue-700 font-medium">Patient Records</Link>
 
-          <Link
-            to="/billing"
-            className="bg-yellow-200 rounded-3xl py-3 px-6 font-medium text-center hover:bg-yellow-300 hover:text-black duration-300"
-          >
-            Billing & Insurance
-          </Link>
+          {/* Separate section for Billing button */}
+          <div className="pt-8 border-t border-blue-200 mt-4">
+            <Link
+              to="/billing"
+              className="block bg-yellow-200 rounded-3xl py-3 px-6 font-medium text-center hover:bg-yellow-300 hover:text-black duration-300"
+            >
+              Billing & Insurance
+            </Link>
+          </div>
         </nav>
       </div>
 
       {/* Footer */}
       <div className="text-center mt-8">
-        <button className="bg-blue-200 text-black px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition-colors">
-          <Link to="/login">Doctor's Plaza Login</Link>
-        </button>
         <p className="text-sm text-black mt-6">© 2025 Hospital Portal</p>
       </div>
     </div>
