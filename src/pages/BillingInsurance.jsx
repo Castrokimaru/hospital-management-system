@@ -5,7 +5,7 @@ const BillingInsurance = () => {
   const [loading, setLoading] = useState(true); // Tracks loading state
 
   useEffect(() => {
-    fetch("http://localhost:5001/billing") // Fetch billing data from server
+    fetch("https://json-server-vercel-ytuo.vercel.app/billing") // Fetch billing data from server
       .then((res) => res.json())
       .then((data) => { setBilling(data); setLoading(false); }) // Update state and stop loading
       .catch((err) => console.error("Error:", err)); // Log fetch errors
@@ -17,7 +17,7 @@ const BillingInsurance = () => {
   const todayTotal = todaysCollections.reduce((sum, item) => sum + item.amount, 0); // Sum paid amounts
 
   const handleProcessPayment = (billingId, status) => {
-    fetch(`http://localhost:5001/billing/${billingId}`, { // Update payment status on server
+    fetch(`https://json-server-vercel-ytuo.vercel.app/billing${billingId}`, { // Update payment status on server
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: status }) // Send new status

@@ -11,7 +11,7 @@ const DoctorsSpeciality = () => {
   // useEffect hook runs when component mounts
   useEffect(() => {
     // Fetch doctor data from JSON server
-    fetch("http://localhost:5001/doctors")
+    fetch("https://json-server-vercel-ytuo.vercel.app/doctors")
       // Convert response to JSON format
       .then((res) => res.json())
       // Handle successful data retrieval

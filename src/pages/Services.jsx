@@ -5,7 +5,7 @@ const ServicesCatalog = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5001/services")
+    fetch("https://json-server-vercel-ytuo.vercel.app/services")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch(console.error)
