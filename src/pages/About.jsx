@@ -5,7 +5,7 @@ function About() {
     <div className="bg-blue-50 min-h-screen flex flex-col items-center justify-center py-10 px-4">
       <div className="bg-white shadow-2xl rounded-2xl w-full max-w-4xl p-8">
         <h1 className="text-3xl font-bold text-blue-700 text-center mb-2">
-          MediCare :medical_symbol:  Management System
+          MediCare⚕️ Management System
         </h1>
         <h2 className="text-sm text-gray-500 text-center mb-6">AU</h2>
 
